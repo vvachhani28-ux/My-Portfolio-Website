@@ -1,0 +1,6 @@
+{
+  "name": "Data Analyst Portfolio",
+  "description": "An interactive, modern portfolio for a fresher Data Analyst showcasing skills, projects, custom dashboards, resume downloads, and contact information.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
