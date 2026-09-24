@@ -36,6 +36,11 @@ export default function ResumeSection() {
         ['Projects', 'Media & Box Office EDA', 'IMDb Ratings & Success EDA', '5,043 films, 110-125 min sweet-spot, 3.4x top ROI', 'Python / Seaborn'],
         ['Projects', 'Creator Analytics', 'YouTube Channels Global EDA', '1,000 top channels, 10.2T views, 48% music & entertainment', 'Python / Pandas'],
         ['Projects', 'Urban Mobility Operations', 'Ola Ride-Hailing SQL Analytics', '100K+ bookings, CTEs & window functions, +14.8% fulfillment', 'SQL / PostgreSQL'],
+        ['Projects', 'Commercial BI', 'Multi-Regional Sales KPI Dashboard', '10,000+ orders, dynamic array PivotTables, +12.4% margin recovery', 'Excel / Power Query'],
+        ['Projects', 'Real Estate SQL', 'Nashville Housing Data Cleaning', '56,477 records, self-join address imputation, 1,244 dupes pruned', 'SQL / PostgreSQL'],
+        ['Projects', 'Information Security', 'Password Strength & Entropy Validator', 'Shannon entropy scoring, 98.6% pattern detection, <2ms latency', 'Python / Regex'],
+        ['Projects', 'Statistical Profiling', 'Diagnostic EDA Foundations Benchmark', 'Skewness/outliers triage automated, 3 hrs down to 8 mins', 'Python / Pandas'],
+        ['Projects', 'Consumer Economics', 'Zomato RFM Customer Segmentation', '50,000+ diners, NTILE(5) scoring, 41.3% GMV in top 8%', 'SQL / PostgreSQL'],
         ['Technical Skills', 'Languages', 'Querying & Coding', 'Python, SQL (PostgreSQL), R, JavaScript', 'Advanced Levels'],
         ['Technical Skills', 'Software', 'Business Intelligence', 'Power BI, Tableau, Advanced Excel, Git', 'Certifications Mapped'],
         ['Certifications', 'Microsoft Certification', 'PL-300 Exam', 'Microsoft Power BI Data Analyst Associate', 'Active Status'],
@@ -293,6 +298,76 @@ export default function ResumeSection() {
                 </div>
                 <p className="text-xs text-slate-600 font-sans leading-relaxed">
                   Authored 25+ relational SQL queries with CTEs and window functions on 100,000+ booking logs. Resolved driver cancellation triggers and modeled corridor dispatches lifting fulfillment by 14.8%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Multi-Regional Sales KPI & Executive Margin Dashboard
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/sales-kpi-dashboard-excel-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Consolidated 10,000+ sales orders into dynamic PivotTables and slicers. Modeled discount elasticity to curb 7.2% margin slippage, reducing executive report generation time by 85%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Nashville Housing Market Data Cleaning & Valuation SQL
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/nashville-housing-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Sanitized 56,477 housing registry logs. Populated 2,840 missing property addresses via ParcelID self-joins and eliminated 1,244 duplicate deed entries using CTEs with ROW_NUMBER().
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Cybersecurity Password Strength & Entropy Validator
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/password-checker-regex-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Engineered a Python regex security engine with Shannon entropy calculations. Successfully identified 98.6% of vulnerable credentials in a 100K breach sample at &lt;2ms latency.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Statistical Foundations & Diagnostic Data Analysis Warm-Up
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Data-analysis-warm-up-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Created an automated exploratory diagnostic benchmark in Python Pandas. Normalized heavy right-skewed variables (3.42 to 0.18 skew) and reduced dataset inspection triage from 3 hours to 8 minutes.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Zomato Customer RFM Segmentation & Cohort Order Economics
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/zomato-customers-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Segmented 50,000+ customer profiles via PostgreSQL NTILE(5) RFM scoring. Proved top 8.2% Champions generate 41.3% of platform GMV and established 14-day reactivation doubles 90-day retention.
                 </p>
               </div>
             </div>

@@ -214,6 +214,11 @@ export default function ContactSection() {
                   <option value="IMDb Ratings & Box Office EDA">IMDb Ratings & Box Office EDA (Case #4)</option>
                   <option value="YouTube Channels Global Performance EDA">YouTube Channels Performance EDA (Case #5)</option>
                   <option value="Ola Ride-Hailing SQL Analytics">Ola Ride-Hailing SQL Analytics (Case #6)</option>
+                  <option value="Multi-Regional Sales KPI Dashboard">Sales KPI Excel Dashboard (Case #7)</option>
+                  <option value="Nashville Housing Market SQL Cleaning">Nashville Housing SQL Cleaning (Case #8)</option>
+                  <option value="Password Strength & Entropy Validator">Password Strength Regex Checker (Case #9)</option>
+                  <option value="Diagnostic EDA Foundations Benchmark">Data Analysis Warm-Up EDA (Case #10)</option>
+                  <option value="Zomato Customer RFM Segmentation">Zomato Customer RFM Analytics (Case #11)</option>
                   <option value="Full-Time Hiring Opportunity">Full-Time Hiring Opportunity</option>
                   <option value="Custom Data Consultation">Custom Data Consultation</option>
                 </select>
