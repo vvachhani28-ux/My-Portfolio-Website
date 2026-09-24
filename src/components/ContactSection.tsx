@@ -228,6 +228,11 @@ export default function ContactSection() {
                   <option value="Multi-Format Contact Regex Pipeline">Contact & PII Regex Extractor (Case #18)</option>
                   <option value="Adult Census Income Demographics EDA">Adult Incomes Census EDA (Case #19)</option>
                   <option value="Google Play Store App Ecosystem EDA">Google Play Store App EDA (Case #20)</option>
+                  <option value="E-Commerce Marketplace Orders & Returns EDA">E-Commerce Marketplace Orders & Returns (Case #21)</option>
+                  <option value="Artisanal Chocolate Sales & Distribution SQL">Chocolate Sales & Distribution SQL (Case #22)</option>
+                  <option value="Component Cost & Workforce Capacity Excel">Component Cost & Workforce Excel (Case #23)</option>
+                  <option value="Student Equity Portfolio & Stock Modeling">Student Stock Portfolio Modeling (Case #24)</option>
+                  <option value="Core Financial & Operations Formula Architecture">Core Excel Formula Architecture (Case #25)</option>
                   <option value="Full-Time Hiring Opportunity">Full-Time Hiring Opportunity</option>
                   <option value="Custom Data Consultation">Custom Data Consultation</option>
                 </select>

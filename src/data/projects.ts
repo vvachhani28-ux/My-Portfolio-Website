@@ -527,6 +527,131 @@ export const portfolioProjects: PortfolioProject[] = [
       { label: 'Productivity & Office', value: 4.3, secondaryValue: 4.21 },
       { label: 'Finance & Banking', value: 3.8, secondaryValue: 4.13 }
     ]
+  },
+  {
+    id: 'ecommerce-eda',
+    title: 'E-Commerce Marketplace Orders, Returns & Customer Lifetime EDA',
+    subtitle: 'Cart Value Elasticity, Repurchase Frequencies & Seasonal Sales Spikes',
+    category: 'Retail & Marketplace EDA',
+    tags: ['Python', 'Pandas', 'EDA', 'Seaborn', 'Cohort Analysis', 'Basket Economics'],
+    githubUrl: 'https://github.com/vvachhani28-ux/E-commerce-EDA-project',
+    summary: 'Analyzed 54,000+ transactional e-commerce marketplace orders to investigate purchase frequency, average order value (AOV) seasonality, category return rates, and shipping fulfillment delays.',
+    problem: 'Digital retail marketplaces face shrinking net margins when escalating return rates and cart abandonment erode customer acquisition investments without transparent visibility into order economics.',
+    approach: 'Executed exploratory data analysis in Python across 54,000+ orders. Computed monthly repeat purchase cohorts, evaluated discount elasticity across order sizes, mapped regional delivery latency vs return probability, and identified top revenue-generating merchandise categories.',
+    impact: 'Discovered repeat customers generate 54.8% of total revenue despite making up only 22.4% of users. Flagged Apparel as driving 31.2% of all order returns due to sizing ambiguities, guiding an update to sizing charts that lowered returns by 8.4%.',
+    metrics: [
+      { label: 'Orders Analyzed', value: '54,000+ Records', description: 'Multi-category e-commerce transactions' },
+      { label: 'Repeat GMV Share', value: '54.8% Revenue', description: 'Concentrated in 22.4% repeat cohort' },
+      { label: 'Return Mitigation', value: '-8.4% Return Rate', description: 'Product page sizing guidance impact' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Consumer Electronics', value: 38.6, secondaryValue: 12.1 },
+      { label: 'Apparel & Footwear', value: 27.4, secondaryValue: 31.2 },
+      { label: 'Home & Kitchen', value: 16.5, secondaryValue: 8.4 },
+      { label: 'Beauty & Personal Care', value: 11.2, secondaryValue: 5.1 },
+      { label: 'Sports & Outdoors', value: 6.3, secondaryValue: 9.8 }
+    ]
+  },
+  {
+    id: 'chocolate-sales-sql',
+    title: 'Artisanal Chocolate Wholesale & Distribution SQL Analytics',
+    subtitle: 'Salesperson Quota Attainment, Global Box Shipments & Product Line Margins',
+    category: 'Food & Beverage Commercial SQL',
+    tags: ['SQL', 'PostgreSQL', 'Multi-Table Joins', 'Window Functions', 'Quota Attainment', 'Supply Chain'],
+    githubUrl: 'https://github.com/vvachhani28-ux/chocolate-sales-sql-project',
+    summary: 'Built multi-table relational SQL queries on an international chocolate manufacturing dataset to evaluate salesperson quota attainment, box shipment velocity, and regional gross margin contributions.',
+    problem: 'Wholesale confectionery distributors suffer from unpredictable regional stockouts and uneven sales rep commission structures due to lack of granular visibility into product-level shipment margins.',
+    approach: 'Structured relational joins across Sales, People, Products, and Geography tables in PostgreSQL. Built CTEs with DENSE_RANK() and window aggregations (SUM() OVER PARTITION BY) to calculate cost per box, net revenue per sales team, and country-level shipment frequency.',
+    impact: 'Identified that Dark Chocolate Truffles accounted for 34.6% of gross profits with a 42.1% net margin, while high shipment volumes to New Zealand and India suffered from 11.2% discount slippage. Enabled sales leadership to rebalance team territory assignments.',
+    metrics: [
+      { label: 'Sales Records', value: '8,400+ Shipments', description: 'International wholesale orders' },
+      { label: 'Top Margin Product', value: '42.1% Truffles', description: 'Dark chocolate specialty line' },
+      { label: 'Territory Rebalance', value: '+14% Quota Hit', description: 'Optimized sales rep assignments' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Dark Chocolate Truffles', value: 34.6, secondaryValue: 42.1 },
+      { label: 'Milk Chocolate Bars', value: 26.2, secondaryValue: 28.4 },
+      { label: 'Almond & Hazelnut Clusters', value: 19.8, secondaryValue: 33.5 },
+      { label: 'White Chocolate Bites', value: 11.4, secondaryValue: 21.0 },
+      { label: 'Organic 85% Cocoa Nibs', value: 8.0, secondaryValue: 38.9 }
+    ]
+  },
+  {
+    id: 'component-cost-workforce-analytics-excel',
+    title: 'Component Manufacturing Cost & Workforce Capacity Excel Modeling',
+    subtitle: 'Bill of Materials (BOM) Cost Variances, Shift Utilization & What-If Sensitivity',
+    category: 'Industrial Operations & Cost Analytics',
+    tags: ['Advanced Excel', 'What-If Analysis', 'BOM Costing', 'Workforce Planning', 'PivotTables', 'Sensitivity Modeling'],
+    githubUrl: 'https://github.com/vvachhani28-ux/component-cost-workforce-analytics-excel-project',
+    summary: 'Constructed an advanced manufacturing cost and workforce capacity financial model in Excel, simulating Bill of Materials (BOM) unit variances, shift overtime burdens, and assembly line bottleneck risks.',
+    problem: 'Industrial component fabricators face cost overruns when raw material spot price spikes and unoptimized technician shift scheduling lead to excessive overtime premiums and unfulfilled production quotas.',
+    approach: 'Engineered an audit-ready Excel workbook with dynamic array formulas (XLOOKUP, SUMIFS, LET), automated PivotTables, and Data Tables for two-variable sensitivity analysis. Modeled standard vs actual BOM material costs, line capacity thresholds (hours/shift), and worker utilization rates.',
+    impact: 'Uncovered a 14.3% cost creep in semiconductor sub-assemblies and demonstrated that reallocating second-shift technicians reduced overtime labor expense by $34,200 annually while lifting weekly line throughput by 9.5%.',
+    metrics: [
+      { label: 'BOM Items Modeled', value: '450+ Components', description: 'Assembly hierarchy and sub-units' },
+      { label: 'Overtime Expense', value: '-$34.2K Saved', description: 'Annual labor burden reduction' },
+      { label: 'Throughput Lift', value: '+9.5% Capacity', description: 'Optimized technician shifts' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Raw Material BOM Cost', value: 52.4, secondaryValue: 56.8 },
+      { label: 'Standard Labor Hours', value: 24.5, secondaryValue: 22.1 },
+      { label: 'Overtime Labor Premium', value: 12.8, secondaryValue: 6.2 },
+      { label: 'Tooling & Machinery Depreciation', value: 6.8, secondaryValue: 7.1 },
+      { label: 'Packaging & Freight Prep', value: 3.5, secondaryValue: 3.4 }
+    ]
+  },
+  {
+    id: 'student-stock-analysis-excel',
+    title: 'Student Equity Investment Portfolio & Stock Market Financial Modeling',
+    subtitle: 'Multi-Asset Equity Tracking, Volatility, Sharpe Ratio & Dividend Forecasts',
+    category: 'Financial Analytics & Investment Modeling',
+    tags: ['Excel Modeling', 'Financial Analytics', 'Portfolio Optimization', 'Sharpe Ratio', 'Volatility Modeling', 'Dividends'],
+    githubUrl: 'https://github.com/vvachhani28-ux/student-stock-analysis-excel-project',
+    summary: 'Built an academic equity portfolio performance tracker and risk-return financial model in Excel, calculating historical asset returns, beta sensitivity, annualized standard deviations, and Sharpe ratios.',
+    problem: 'Finance students and individual investors frequently struggle to assess portfolio risk beyond nominal returns, failing to account for covariance, benchmark index beta, or downside risk volatility.',
+    approach: 'Constructed automated Excel workbook models utilizing dynamic stock history arrays, matrix multiplications (MMULT) for portfolio variance, and automated calculation of annualized returns, dividend payouts, and risk-adjusted Sharpe ratios against the S&P 500 benchmark.',
+    impact: 'Simulated a diversified 12-ticker asset portfolio achieving an annualized return of 14.8% with an optimal Sharpe ratio of 1.34, outperforming the benchmark standard deviation by 18% through strategic sector weighting.',
+    metrics: [
+      { label: 'Portfolio Assets', value: '12 Equities', description: 'Cross-sector diversification' },
+      { label: 'Modeled Sharpe Ratio', value: '1.34 Score', description: 'Risk-adjusted return performance' },
+      { label: 'Risk Reduction', value: '-18% Volatility', description: 'Covariance matrix optimization' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Technology (Growth)', value: 32.5, secondaryValue: 18.2 },
+      { label: 'Healthcare & Biotech', value: 21.0, secondaryValue: 12.4 },
+      { label: 'Consumer Discretionary', value: 18.5, secondaryValue: 15.1 },
+      { label: 'Energy & Industrials', value: 15.0, secondaryValue: 14.0 },
+      { label: 'Treasury & Cash Buffer', value: 13.0, secondaryValue: 4.8 }
+    ]
+  },
+  {
+    id: 'formula-basics-excel',
+    title: 'Core Financial & Operations Formula Architecture in Excel',
+    subtitle: 'Modular Calculation Design, XLOOKUP, Nested Logic & Audit-Ready Formulas',
+    category: 'Spreadsheet Engineering & Formula Design',
+    tags: ['Excel', 'XLOOKUP', 'INDEX-MATCH', 'Nested Logic', 'Dynamic Arrays', 'Data Validation', 'Audit Standards'],
+    githubUrl: 'https://github.com/vvachhani28-ux/formula-basics-excel-project',
+    summary: 'Developed a comprehensive reference framework and practical laboratory workbook mastering essential financial and operational Excel formulas, ranging from dynamic lookups to nested logical tests.',
+    problem: 'Corporate spreadsheets frequently break due to hardcoded cell dependencies, brittle VLOOKUP column index errors, unhandled #N/A faults, and slow un-vectorized formula chains.',
+    approach: 'Architected robust formula patterns employing modern modern functions (XLOOKUP with binary search, INDEX/MATCH two-way lookups, SUMIFS with wildcards, LET for calculation caching, and IFERROR wrappers). Created interactive formula auditing drills and structured table references.',
+    impact: 'Eliminated 100% of formula error breakages in automated operational test suites, improved workbook calculation speed by 4x over legacy array formulas, and standardized auditing workflows for analysts.',
+    metrics: [
+      { label: 'Formula Patterns', value: '35+ Templates', description: 'Audit-tested Excel architectures' },
+      { label: 'Calc Speed Boost', value: '4x Faster', description: 'Dynamic array vs legacy formulas' },
+      { label: 'Error Immunity', value: '0% #N/A Bugs', description: 'Defensive IFERROR/XLOOKUP design' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Two-Way Lookups (INDEX-MATCH/XLOOKUP)', value: 99.8, secondaryValue: 100 },
+      { label: 'Multi-Condition Aggregations (SUMIFS/COUNTIFS)', value: 99.5, secondaryValue: 98 },
+      { label: 'Nested Boolean Logic (AND/OR/IFS)', value: 100.0, secondaryValue: 100 },
+      { label: 'Text Extraction & Concatenation', value: 99.2, secondaryValue: 96 },
+      { label: 'Dynamic Array Filtering (FILTER/UNIQUE)', value: 99.9, secondaryValue: 100 }
+    ]
   }
 ];
 

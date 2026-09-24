@@ -50,6 +50,11 @@ export default function ResumeSection() {
         ['Projects', 'Compliance ETL', 'Contact & Lead Extraction Regex', '80K CRM tickets, +34% phone yield, 100% PII masked', 'Python / Regex'],
         ['Projects', 'Socioeconomic EDA', 'Adult Census Income >$50K Predictors', '32,561 records, 4.2x degree odds, 38-52 peak earnings age', 'Python / Pandas'],
         ['Projects', 'App Ecosystem EDA', 'Google Play Store Ratings & Economics', '10,840 apps, 92.6% free, 20-50MB size sweet-spot', 'Python / Seaborn'],
+        ['Projects', 'E-Commerce Marketplace', 'E-Commerce Customer Orders & Returns EDA', '54K+ orders, 54.8% repeat revenue, -8.4% return rate', 'Python / Seaborn'],
+        ['Projects', 'Confectionery Supply Chain', 'Artisanal Chocolate Wholesale SQL Analytics', '8.4K shipments, 42.1% top truffle margin, +14% quota', 'SQL / PostgreSQL'],
+        ['Projects', 'Manufacturing Costing', 'Component Cost & Workforce Capacity Excel Modeling', '450+ BOM items, -$34.2K overtime saved, +9.5% capacity', 'Advanced Excel / Sensitivity'],
+        ['Projects', 'Financial Portfolio Modeling', 'Student Equity Portfolio & Stock Market Modeling', '12 assets, 1.34 Sharpe ratio, -18% volatility reduction', 'Excel / Covariance Matrix'],
+        ['Projects', 'Spreadsheet Architecture', 'Core Financial & Operations Formula Design', '35+ audit templates, 4x speedup, 0% #N/A errors', 'Excel / XLOOKUP & Dynamic Arrays'],
         ['Technical Skills', 'Languages', 'Querying & Coding', 'Python, SQL (PostgreSQL), R, JavaScript', 'Advanced Levels'],
         ['Technical Skills', 'Software', 'Business Intelligence', 'Power BI, Tableau, Advanced Excel, Git', 'Certifications Mapped'],
         ['Certifications', 'Microsoft Certification', 'PL-300 Exam', 'Microsoft Power BI Data Analyst Associate', 'Active Status'],
@@ -503,6 +508,76 @@ export default function ResumeSection() {
                 </div>
                 <p className="text-xs text-slate-600 font-sans leading-relaxed">
                   Analyzed 10,840 Play Store apps and review sentiments. Established that 20MB–50MB file sizes yield optimal install conversions, whereas apps exceeding 100MB face an 18% conversion penalty.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    E-Commerce Marketplace Orders, Returns & Customer Lifetime EDA
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/E-commerce-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Evaluated 54,000+ retail marketplace transactions in Python. Uncovered that repeat buyers drive 54.8% of GMV and Apparel accounts for 31.2% of product returns, driving sizing UX refinements that mitigated returns by 8.4%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Artisanal Chocolate Wholesale & Distribution SQL Analytics
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/chocolate-sales-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Constructed multi-table joins across 8,400+ international shipment records in PostgreSQL. Determined Dark Truffles deliver 42.1% net profit margins and restructured sales territories to elevate quota hit rate by 14%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Component Manufacturing Cost & Workforce Capacity Excel Modeling
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/component-cost-workforce-analytics-excel-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Engineered an audit-ready Bill of Materials (BOM) cost sensitivity workbook in Excel modeling 450+ assembly components. Reduced overtime expenses by $34,200 annually while boosting assembly throughput by 9.5%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Student Equity Investment Portfolio & Stock Market Financial Modeling
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/student-stock-analysis-excel-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Simulated a 12-ticker equity portfolio in Excel utilizing matrix covariance and dynamic price arrays. Modeled risk-adjusted Sharpe ratio of 1.34 and lowered portfolio volatility by 18% versus benchmark.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Core Financial & Operations Formula Architecture in Excel
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/formula-basics-excel-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Created 35+ resilient Excel formula architectures leveraging modern XLOOKUP, INDEX/MATCH, and dynamic arrays. Achieved 4x calculation speed improvements and eliminated 100% of #N/A runtime bugs.
                 </p>
               </div>
             </div>

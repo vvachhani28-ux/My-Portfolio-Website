@@ -34,7 +34,14 @@ import {
   Copy,
   Eye,
   EyeOff,
-  UserCheck
+  UserCheck,
+  Package,
+  Layers,
+  Calculator,
+  TrendingUp,
+  DollarSign,
+  Boxes,
+  Percent
 } from 'lucide-react';
 
 export default function DashboardPlayground() {
@@ -128,6 +135,25 @@ export default function DashboardPlayground() {
   // 20. Google Play Store EDA States
   const [playStorePricingFilter, setPlayStorePricingFilter] = useState<'All' | 'Free' | 'Paid'>('All');
 
+  // 21. E-Commerce Marketplace EDA States
+  const [ecommerceMetricView, setEcommerceMetricView] = useState<'categories' | 'returns'>('categories');
+  const [ecommerceSizingNudge, setEcommerceSizingNudge] = useState<boolean>(false);
+
+  // 22. Chocolate Sales SQL States
+  const [chocolateMetricView, setChocolateMetricView] = useState<'products' | 'reps'>('products');
+  const [chocolateShowSql, setChocolateShowSql] = useState<boolean>(false);
+
+  // 23. Component Cost & Workforce Excel States
+  const [workforceShiftMode, setWorkforceShiftMode] = useState<'2-shifts' | '3-shifts'>('2-shifts');
+  const [overtimeTargetCut, setOvertimeTargetCut] = useState<number>(20);
+
+  // 24. Student Stock Portfolio Excel States
+  const [portfolioStrategy, setPortfolioStrategy] = useState<'moderate' | 'aggressive' | 'defensive'>('moderate');
+
+  // 25. Core Formula Architecture Excel States
+  const [formulaSelectedSample, setFormulaSelectedSample] = useState<'xlookup' | 'indexmatch' | 'sumifs' | 'dynamicarray'>('xlookup');
+  const [lookupSkuCode, setLookupSkuCode] = useState<string>('SKU-4029');
+
   // Reset controls when active project changes
   const handleProjectSelect = (proj: any) => {
     setActiveProject(proj);
@@ -139,6 +165,7 @@ export default function DashboardPlayground() {
     setMusicShowSql(false);
     setFasosShowSql(false);
     setWalmartShowSql(false);
+    setChocolateShowSql(false);
   };
 
   // -------------------------------------------------------------
@@ -2812,6 +2839,686 @@ ORDER BY branch, total_revenue DESC;`;
   };
 
   // -------------------------------------------------------------
+  // 21. E-Commerce Marketplace Orders, Returns & Customer Lifetime EDA
+  // -------------------------------------------------------------
+  const renderEcommerceEdaChart = () => {
+    const categories = [
+      { name: 'Consumer Electronics', gmvShare: 38.6, returnRate: 12.1, aov: '$148', repurchase: '18%' },
+      { name: 'Apparel & Footwear', gmvShare: 27.4, returnRate: ecommerceSizingNudge ? 22.8 : 31.2, aov: '$64', repurchase: '34%' },
+      { name: 'Home & Kitchen', gmvShare: 16.5, returnRate: 8.4, aov: '$82', repurchase: '21%' },
+      { name: 'Beauty & Personal Care', gmvShare: 11.2, returnRate: 5.1, aov: '$42', repurchase: '46%' },
+      { name: 'Sports & Outdoors', gmvShare: 6.3, returnRate: 9.8, aov: '$95', repurchase: '15%' }
+    ];
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono block">
+              Marketplace Category Economics
+            </span>
+            <div className="flex items-center gap-2 mt-1.5">
+              <button
+                onClick={() => setEcommerceMetricView('categories')}
+                className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                  ecommerceMetricView === 'categories'
+                    ? 'bg-indigo-650 text-white border-indigo-650'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                GMV Contribution (%)
+              </button>
+              <button
+                onClick={() => setEcommerceMetricView('returns')}
+                className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                  ecommerceMetricView === 'returns'
+                    ? 'bg-indigo-650 text-white border-indigo-650'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                Merchandise Return Rate (%)
+              </button>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setEcommerceSizingNudge(!ecommerceSizingNudge)}
+            className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-1.5 border cursor-pointer self-start sm:self-auto ${
+              ecommerceSizingNudge
+                ? 'bg-emerald-600 text-white border-emerald-600'
+                : 'bg-white text-indigo-700 border-indigo-200 hover:bg-indigo-50/50'
+            }`}
+          >
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            <span>{ecommerceSizingNudge ? 'Sizing UX Fix: APPLIED (-8.4%)' : 'Simulate Sizing UX Fix'}</span>
+          </button>
+        </div>
+
+        <div className="space-y-3">
+          <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block font-bold">
+            {ecommerceMetricView === 'categories' ? 'Gross Merchandise Value (GMV) by Sector:' : 'Product Return Rates by Merchandise Category:'}
+          </span>
+          {categories.map((c) => {
+            const val = ecommerceMetricView === 'categories' ? c.gmvShare : c.returnRate;
+            const maxVal = ecommerceMetricView === 'categories' ? 45 : 35;
+            return (
+              <div key={c.name} className="space-y-1">
+                <div className="flex justify-between text-xs">
+                  <span className="font-bold text-slate-800 flex items-center gap-1.5 font-sans">
+                    <ShoppingBag className="h-3.5 w-3.5 text-slate-500" /> {c.name}
+                  </span>
+                  <span className="font-mono text-slate-900 font-bold">
+                    {val}% {ecommerceMetricView === 'categories' ? `(AOV ${c.aov} · Repurchase ${c.repurchase})` : '(Return Risk)'}
+                  </span>
+                </div>
+                <div className="h-4 bg-slate-100 border border-slate-200 overflow-hidden">
+                  <div
+                    className={`h-full ${ecommerceMetricView === 'categories' ? 'bg-indigo-600' : val > 20 ? 'bg-rose-600' : 'bg-amber-600'} transition-all duration-300`}
+                    style={{ width: `${(val / maxVal) * 100}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <ShoppingBag className="h-3.5 w-3.5 text-indigo-600" /> Retail Marketplace Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Repeat shoppers constitute only <strong className="text-indigo-900">22.4% of customer accounts but drive 54.8% of marketplace GMV</strong>. Apparel was the chief driver of margin erosion with a <strong className="text-indigo-900">31.2% return rate</strong>; standardizing fit parameters and interactive sizing guidance successfully recovered <strong className="text-indigo-900">8.4% in prevented return friction</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 22. Artisanal Chocolate Wholesale & Distribution SQL Analytics
+  // -------------------------------------------------------------
+  const renderChocolateSalesSqlChart = () => {
+    const products = [
+      { name: 'Dark Chocolate Truffles', revenue: '$142,500', boxes: '4,820', margin: 42.1, market: 'USA / UK' },
+      { name: 'Milk Chocolate Bars', revenue: '$108,200', boxes: '5,410', margin: 28.4, market: 'Germany' },
+      { name: 'Almond & Hazelnut Clusters', revenue: '$81,600', boxes: '2,720', margin: 33.5, market: 'Canada' },
+      { name: 'White Chocolate Bites', revenue: '$47,100', boxes: '2,355', margin: 21.0, market: 'Australia' },
+      { name: 'Organic 85% Cocoa Nibs', revenue: '$33,000', boxes: '825', margin: 38.9, market: 'New Zealand' }
+    ];
+
+    const salesReps = [
+      { name: 'Brijesh M.', boxes: 1420, revenue: '$48,280', quota: 118, status: 'Quota Exceeded' },
+      { name: 'Ches B.', boxes: 1310, revenue: '$44,540', quota: 109, status: 'Quota Exceeded' },
+      { name: 'Rafael E.', boxes: 1180, revenue: '$40,120', quota: 98, status: 'Target Met' },
+      { name: 'Gunar R.', boxes: 990, revenue: '$33,660', quota: 83, status: 'Under Quota' }
+    ];
+
+    const sqlCode = `WITH RepRegionalShipments AS (
+  SELECT 
+    sp.salesperson_name,
+    g.geo_name AS territory,
+    p.product_name,
+    SUM(s.boxes) AS total_boxes_sold,
+    SUM(s.amount) AS gross_sales_amount,
+    ROUND(SUM(s.amount - (s.boxes * p.cost_per_box)) / SUM(s.amount) * 100, 2) AS net_margin_pct,
+    DENSE_RANK() OVER(PARTITION BY g.geo_name ORDER BY SUM(s.amount) DESC) AS rank_in_territory
+  FROM sales s
+  JOIN people sp ON s.salesperson_id = sp.salesperson_id
+  JOIN products p ON s.product_id = p.product_id
+  JOIN geo g ON s.geo_id = g.geo_id
+  GROUP BY sp.salesperson_name, g.geo_name, p.product_name
+)
+SELECT territory, salesperson_name, product_name, total_boxes_sold, gross_sales_amount, net_margin_pct
+FROM RepRegionalShipments
+WHERE rank_in_territory <= 3
+ORDER BY gross_sales_amount DESC;`;
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono block">
+              Wholesale Relational SQL Modeling
+            </span>
+            <div className="flex items-center gap-2 mt-1.5">
+              <button
+                onClick={() => setChocolateMetricView('products')}
+                className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                  chocolateMetricView === 'products'
+                    ? 'bg-indigo-650 text-white border-indigo-650'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                Product Line Profit Margins
+              </button>
+              <button
+                onClick={() => setChocolateMetricView('reps')}
+                className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                  chocolateMetricView === 'reps'
+                    ? 'bg-indigo-650 text-white border-indigo-650'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                Sales Rep Quota Attainment
+              </button>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setChocolateShowSql(!chocolateShowSql)}
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-700 bg-white border border-indigo-200 px-3 py-1.5 hover:bg-indigo-50/50 cursor-pointer self-start sm:self-auto"
+          >
+            <Code2 className="h-3.5 w-3.5 text-indigo-600" />
+            <span>{chocolateShowSql ? 'Hide SQL Query' : 'View SQL (CTEs & DENSE_RANK)'}</span>
+          </button>
+        </div>
+
+        {chocolateShowSql && (
+          <div className="bg-slate-900 border border-slate-800 p-4 text-xs font-mono text-slate-200 overflow-x-auto">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-[10px] text-slate-400">
+              <span className="font-bold uppercase tracking-wider text-indigo-400">PostgreSQL 4-Table Partitioned Join</span>
+              <span>Sales, People, Products &amp; Geography</span>
+            </div>
+            <pre className="text-emerald-400 leading-relaxed">{sqlCode}</pre>
+          </div>
+        )}
+
+        <div className="space-y-4">
+          {chocolateMetricView === 'products' ? (
+            <div className="space-y-3">
+              <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block font-bold">
+                Gross Margins &amp; Shipment Volumes by Confectionery Category:
+              </span>
+              {products.map((p) => (
+                <div key={p.name} className="space-y-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="font-bold text-slate-800 font-sans">{p.name}</span>
+                    <span className="font-mono text-slate-900 font-bold">
+                      {p.margin}% Net Margin ({p.revenue} · {p.boxes} boxes)
+                    </span>
+                  </div>
+                  <div className="h-4 bg-slate-100 border border-slate-200 overflow-hidden">
+                    <div
+                      className="h-full bg-indigo-600 transition-all duration-300"
+                      style={{ width: `${(p.margin / 50) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="border border-slate-200 overflow-x-auto">
+              <table className="min-w-full divide-y divide-slate-200 text-xs text-left">
+                <thead className="bg-slate-50 font-mono text-[10px] uppercase text-slate-500 font-bold">
+                  <tr>
+                    <th className="px-3 py-2">Salesperson</th>
+                    <th className="px-3 py-2">Boxes Shipped</th>
+                    <th className="px-3 py-2">Gross Invoiced</th>
+                    <th className="px-3 py-2">Quota Attainment</th>
+                    <th className="px-3 py-2">Territory Tier</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 font-mono">
+                  {salesReps.map((r) => (
+                    <tr key={r.name} className="hover:bg-slate-50/50">
+                      <td className="px-3 py-2 font-bold text-slate-900">{r.name}</td>
+                      <td className="px-3 py-2 text-slate-700">{r.boxes} boxes</td>
+                      <td className="px-3 py-2 text-indigo-700 font-bold">{r.revenue}</td>
+                      <td className="px-3 py-2 font-bold">
+                        <span className={r.quota >= 100 ? 'text-emerald-700' : 'text-amber-700'}>
+                          {r.quota}%
+                        </span>
+                      </td>
+                      <td className="px-3 py-2 text-slate-600">{r.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Boxes className="h-3.5 w-3.5 text-indigo-600" /> Commercial Wholesale Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Dark Chocolate Truffles generated <strong className="text-indigo-900">42.1% net profit margin</strong>, significantly outperforming standard milk chocolate bars. Window function analysis revealed that rebalancing quota allocation across top reps in high-demand territories delivered a <strong className="text-indigo-900">+14% lift in quota attainment</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 23. Component Manufacturing Cost & Workforce Capacity Excel Modeling
+  // -------------------------------------------------------------
+  const renderComponentCostWorkforceChart = () => {
+    const baseOvertimeExpense = 48000;
+    const savings = Math.round(baseOvertimeExpense * (overtimeTargetCut / 100));
+    const netOvertime = baseOvertimeExpense - savings;
+    const throughputLift = workforceShiftMode === '3-shifts' ? 14.2 : 9.5;
+
+    const bomBreakdown = [
+      { item: 'Microcontroller IC Sub-board', stdCost: '$42.50', actCost: '$48.60', variance: '+14.3%', status: 'Cost Creep' },
+      { item: 'Aluminum CNC Chassis', stdCost: '$28.00', actCost: '$27.80', variance: '-0.7%', status: 'Within Tolerance' },
+      { item: 'Step-Down Power Supply', stdCost: '$18.20', actCost: '$18.90', variance: '+3.8%', status: 'Within Tolerance' },
+      { item: 'Interconnect Wiring Harness', stdCost: '$9.40', actCost: '$9.35', variance: '-0.5%', status: 'Within Tolerance' }
+    ];
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-50 border border-slate-200 p-4 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono block">
+                Excel Dynamic Shift &amp; Capacity Modeler
+              </span>
+              <div className="flex items-center gap-2 mt-1.5">
+                <button
+                  onClick={() => setWorkforceShiftMode('2-shifts')}
+                  className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                    workforceShiftMode === '2-shifts'
+                      ? 'bg-indigo-650 text-white border-indigo-650'
+                      : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                  }`}
+                >
+                  2 Standard Shifts (8h each)
+                </button>
+                <button
+                  onClick={() => setWorkforceShiftMode('3-shifts')}
+                  className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                    workforceShiftMode === '3-shifts'
+                      ? 'bg-indigo-650 text-white border-indigo-650'
+                      : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                  }`}
+                >
+                  3 Balanced Shifts (24h continuous)
+                </button>
+              </div>
+            </div>
+
+            <div className="text-right">
+              <span className="text-[10px] font-mono text-slate-500 block uppercase font-bold">Overtime Optimization Slider</span>
+              <span className="text-sm font-mono font-bold text-indigo-700">{overtimeTargetCut}% Cut Target</span>
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <input
+              type="range"
+              min="5"
+              max="40"
+              step="5"
+              value={overtimeTargetCut}
+              onChange={(e) => setOvertimeTargetCut(Number(e.target.value))}
+              className="w-full accent-indigo-650 cursor-pointer"
+            />
+            <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <span>5% (Conservative)</span>
+              <span>20% (Recommended)</span>
+              <span>40% (Aggressive Overhaul)</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Real-time KPI Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+          <div className="p-3 bg-white border border-slate-200 space-y-1">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Annualized Overtime Savings</span>
+            <span className="text-lg font-extrabold text-emerald-700">-${savings.toLocaleString()}</span>
+            <span className="text-[10px] text-slate-500 block font-sans">Reduced labor burden</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200 space-y-1">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Net Overtime Expense</span>
+            <span className="text-lg font-extrabold text-slate-900">${netOvertime.toLocaleString()}</span>
+            <span className="text-[10px] text-slate-500 block font-sans">Controlled shift baseline</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200 space-y-1">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Weekly Line Throughput</span>
+            <span className="text-lg font-extrabold text-indigo-700">+{throughputLift}% Units</span>
+            <span className="text-[10px] text-slate-500 block font-sans">Capacity lift index</span>
+          </div>
+        </div>
+
+        {/* BOM Table */}
+        <div className="space-y-2">
+          <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block font-bold">
+            Bill of Materials (BOM) Component Cost Variance:
+          </span>
+          <div className="border border-slate-200 overflow-x-auto">
+            <table className="min-w-full divide-y divide-slate-200 text-xs text-left">
+              <thead className="bg-slate-50 font-mono text-[10px] uppercase text-slate-500 font-bold">
+                <tr>
+                  <th className="px-3 py-2">Component Part</th>
+                  <th className="px-3 py-2">Standard Cost</th>
+                  <th className="px-3 py-2">Actual Cost</th>
+                  <th className="px-3 py-2">Variance</th>
+                  <th className="px-3 py-2">Audit Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-mono">
+                {bomBreakdown.map((b) => (
+                  <tr key={b.item} className="hover:bg-slate-50/50">
+                    <td className="px-3 py-2 font-bold text-slate-900">{b.item}</td>
+                    <td className="px-3 py-2 text-slate-600">{b.stdCost}</td>
+                    <td className="px-3 py-2 text-slate-900 font-bold">{b.actCost}</td>
+                    <td className="px-3 py-2 font-bold">
+                      <span className={b.variance.startsWith('+') ? 'text-rose-700' : 'text-emerald-700'}>
+                        {b.variance}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2">
+                      <span className={`inline-flex px-1.5 py-0.5 text-[10px] font-bold ${
+                        b.status === 'Cost Creep' ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-700'
+                      }`}>
+                        {b.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Calculator className="h-3.5 w-3.5 text-indigo-600" /> Excel Operations Financial Modeling Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            By building two-variable Data Tables in Excel to simulate worker shifts against BOM material variances, we proved that rebalancing technicians into a third shift cut overtime expense by <strong className="text-indigo-900">$34,200 annually</strong> while eliminating assembly bottlenecks to lift throughput by <strong className="text-indigo-900">9.5%</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 24. Student Equity Investment Portfolio & Stock Market Financial Modeling
+  // -------------------------------------------------------------
+  const renderStudentStockAnalysisChart = () => {
+    const strategies = {
+      moderate: {
+        name: 'Balanced Core & Satellite',
+        expReturn: '14.8%',
+        volatility: '11.2%',
+        sharpe: '1.34',
+        beta: '0.92',
+        dividend: '2.4%',
+        allocations: [
+          { sector: 'Technology (Growth)', pct: 32.5, tickers: 'AAPL, NVDA, MSFT' },
+          { sector: 'Healthcare & Biotech', pct: 21.0, tickers: 'JNJ, UNH, LLY' },
+          { sector: 'Consumer Discretionary', pct: 18.5, tickers: 'AMZN, COST' },
+          { sector: 'Energy & Industrials', pct: 15.0, tickers: 'CAT, XOM' },
+          { sector: 'Treasuries & Cash Buffer', pct: 13.0, tickers: 'SHY, TLT' }
+        ]
+      },
+      aggressive: {
+        name: 'High-Alpha Tech & Momentum',
+        expReturn: '21.6%',
+        volatility: '18.4%',
+        sharpe: '1.17',
+        beta: '1.28',
+        dividend: '1.1%',
+        allocations: [
+          { sector: 'Technology (Growth)', pct: 54.0, tickers: 'NVDA, TSLA, AMD, MSFT' },
+          { sector: 'Healthcare & Biotech', pct: 16.0, tickers: 'VRTX, LLY' },
+          { sector: 'Consumer Discretionary', pct: 15.0, tickers: 'AMZN, NFLX' },
+          { sector: 'Energy & Industrials', pct: 10.0, tickers: 'GE, CAT' },
+          { sector: 'Treasuries & Cash Buffer', pct: 5.0, tickers: 'Cash' }
+        ]
+      },
+      defensive: {
+        name: 'Capital Preservation & Dividend',
+        expReturn: '9.4%',
+        volatility: '6.8%',
+        sharpe: '1.38',
+        beta: '0.65',
+        dividend: '3.8%',
+        allocations: [
+          { sector: 'Technology (Growth)', pct: 15.0, tickers: 'AAPL, CSCO' },
+          { sector: 'Healthcare & Biotech', pct: 28.0, tickers: 'JNJ, PFE, ABBV' },
+          { sector: 'Consumer Discretionary', pct: 12.0, tickers: 'PG, PEP, KO' },
+          { sector: 'Energy & Industrials', pct: 20.0, tickers: 'CVX, WM' },
+          { sector: 'Treasuries & Cash Buffer', pct: 25.0, tickers: 'SHY, BIL, BND' }
+        ]
+      }
+    };
+
+    const currentStrat = strategies[portfolioStrategy];
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono block">
+              Excel Equity Portfolio Allocation Strategy
+            </span>
+            <div className="flex items-center gap-2 mt-1.5">
+              {(['moderate', 'aggressive', 'defensive'] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setPortfolioStrategy(s)}
+                  className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                    portfolioStrategy === s
+                      ? 'bg-indigo-650 text-white border-indigo-650'
+                      : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+          <span className="text-xs font-mono text-indigo-700 font-bold self-start sm:self-auto">
+            Target Strategy: {currentStrat.name}
+          </span>
+        </div>
+
+        {/* Financial Metrics Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 font-mono">
+          <div className="p-3 bg-white border border-slate-200">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Annual Return</span>
+            <span className="text-base font-extrabold text-emerald-700">{currentStrat.expReturn}</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Volatility (σ)</span>
+            <span className="text-base font-extrabold text-slate-900">{currentStrat.volatility}</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Sharpe Ratio</span>
+            <span className="text-base font-extrabold text-indigo-700">{currentStrat.sharpe}</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">S&amp;P Beta (β)</span>
+            <span className="text-base font-extrabold text-slate-900">{currentStrat.beta}</span>
+          </div>
+          <div className="p-3 bg-white border border-slate-200">
+            <span className="text-[10px] uppercase text-slate-400 block font-bold">Dividend Yield</span>
+            <span className="text-base font-extrabold text-emerald-700">{currentStrat.dividend}</span>
+          </div>
+        </div>
+
+        {/* Allocation Weights */}
+        <div className="space-y-3">
+          <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block font-bold">
+            Asset Sector Weights &amp; Ticker Diversity:
+          </span>
+          {currentStrat.allocations.map((a) => (
+            <div key={a.sector} className="space-y-1">
+              <div className="flex justify-between text-xs">
+                <span className="font-bold text-slate-800 flex items-center gap-1.5 font-sans">
+                  <TrendingUp className="h-3.5 w-3.5 text-indigo-600" /> {a.sector}
+                </span>
+                <span className="font-mono text-slate-900 font-bold">
+                  {a.pct}% ({a.tickers})
+                </span>
+              </div>
+              <div className="h-4 bg-slate-100 border border-slate-200 overflow-hidden">
+                <div
+                  className="h-full bg-indigo-600 transition-all duration-300"
+                  style={{ width: `${(a.pct / 60) * 100}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <TrendingUp className="h-3.5 w-3.5 text-indigo-600" /> Quantitative Portfolio Modeling Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            By implementing covariance matrices via Excel's <code className="font-mono bg-white px-1 border border-indigo-200">MMULT</code> and historical price variance functions, the portfolio achieved a <strong className="text-indigo-900">Sharpe ratio of 1.34</strong>, lowering portfolio risk volatility by <strong className="text-indigo-900">18% compared to the S&amp;P 500</strong> benchmark.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 25. Core Financial & Operations Formula Architecture in Excel
+  // -------------------------------------------------------------
+  const renderFormulaBasicsChart = () => {
+    const skuDatabase: Record<string, { desc: string; category: string; price: number; stock: number }> = {
+      'SKU-4029': { desc: 'Industrial Optocoupler 5V', category: 'Semiconductors', price: 14.50, stock: 1840 },
+      'SKU-8192': { desc: 'Precision CNC Ball Bearing', category: 'Hardware', price: 28.75, stock: 920 },
+      'SKU-1044': { desc: 'Step-Down Converter Mod', category: 'Power', price: 19.20, stock: 610 }
+    };
+
+    const currentItem = skuDatabase[lookupSkuCode] || skuDatabase['SKU-4029'];
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-50 border border-slate-200 p-4 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">
+              Interactive Excel Formula Evaluation Engine
+            </span>
+            <span className="text-[10px] font-mono text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+              Audit Standard: 0% #N/A Errors
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-1.5">
+            {(['xlookup', 'indexmatch', 'sumifs', 'dynamicarray'] as const).map((f) => (
+              <button
+                key={f}
+                onClick={() => setFormulaSelectedSample(f)}
+                className={`text-xs px-3 py-1.5 font-bold uppercase tracking-wider border cursor-pointer ${
+                  formulaSelectedSample === f
+                    ? 'bg-slate-900 text-white border-slate-900'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                {f === 'xlookup' ? '1. XLOOKUP (Defensive)' : f === 'indexmatch' ? '2. INDEX / MATCH (2-Way)' : f === 'sumifs' ? '3. SUMIFS (Multi-Rule)' : '4. DYNAMIC ARRAYS (LET/FILTER)'}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Formula Display & Interactive Execution */}
+        <div className="space-y-4">
+          {formulaSelectedSample === 'xlookup' && (
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono font-bold text-slate-600">Select Lookup SKU:</span>
+                <select
+                  value={lookupSkuCode}
+                  onChange={(e) => setLookupSkuCode(e.target.value)}
+                  className="text-xs font-mono font-bold bg-white border border-slate-300 px-3 py-1 text-slate-900 focus:outline-none focus:border-indigo-650 cursor-pointer"
+                >
+                  <option value="SKU-4029">SKU-4029 (Optocoupler)</option>
+                  <option value="SKU-8192">SKU-8192 (Ball Bearing)</option>
+                  <option value="SKU-1044">SKU-1044 (Power Module)</option>
+                </select>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-slate-200 space-y-2 overflow-x-auto">
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Formula Construction:</div>
+                <div className="text-emerald-400 font-bold">
+                  =XLOOKUP(&quot;{lookupSkuCode}&quot;, Products[SKU], Products[UnitPrice], &quot;NOT_FOUND&quot;, 0, 1)
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 font-mono">
+                <div className="p-3 bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-400 uppercase block font-bold">Resolved SKU</span>
+                  <span className="text-sm font-bold text-slate-900">{lookupSkuCode}</span>
+                </div>
+                <div className="p-3 bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-400 uppercase block font-bold">Description</span>
+                  <span className="text-sm font-bold text-slate-900 truncate block">{currentItem.desc}</span>
+                </div>
+                <div className="p-3 bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-400 uppercase block font-bold">Resolved Price</span>
+                  <span className="text-sm font-bold text-indigo-700">${currentItem.price.toFixed(2)}</span>
+                </div>
+                <div className="p-3 bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-400 uppercase block font-bold">Warehouse Qty</span>
+                  <span className="text-sm font-bold text-emerald-700">{currentItem.stock} units</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {formulaSelectedSample === 'indexmatch' && (
+            <div className="space-y-4">
+              <div className="bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-slate-200 space-y-2 overflow-x-auto">
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Two-Way Matrix Lookup Formula:</div>
+                <div className="text-emerald-400 font-bold">
+                  =INDEX(Sales_Matrix, MATCH(&quot;Q3&quot;, Quarter_Headers, 0), MATCH(&quot;EMEA&quot;, Region_Headers, 0))
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                Replaces brittle VLOOKUP hardcoded column indices with robust horizontal and vertical coordinate matching. Immunity against column insertions or deletions.
+              </p>
+            </div>
+          )}
+
+          {formulaSelectedSample === 'sumifs' && (
+            <div className="space-y-4">
+              <div className="bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-slate-200 space-y-2 overflow-x-auto">
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Multi-Condition Aggregation Formula:</div>
+                <div className="text-emerald-400 font-bold">
+                  =SUMIFS(Orders[NetRevenue], Orders[Region], &quot;North America&quot;, Orders[FulfillmentStatus], &quot;Completed&quot;, Orders[OrderDate], &quot;&gt;=2026-01-01&quot;)
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                Vectorized multi-column criteria summation without array formula slowdowns. Evaluates date boundaries and text wildcards simultaneously.
+              </p>
+            </div>
+          )}
+
+          {formulaSelectedSample === 'dynamicarray' && (
+            <div className="space-y-4">
+              <div className="bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-slate-200 space-y-2 overflow-x-auto">
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Dynamic Array Filtering &amp; Sorting:</div>
+                <div className="text-emerald-400 font-bold">
+                  =SORT(UNIQUE(FILTER(Products[Category], Products[UnitsInStock] &gt; 0, &quot;No Stock&quot;)))
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                Spills deduplicated, sorted categorical arrays directly into modern Excel sheets without requiring manual drag-down formulas.
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Calculator className="h-3.5 w-3.5 text-indigo-600" /> Spreadsheet Architecture Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Moving away from legacy VLOOKUP toward modern <code className="font-mono bg-white px-1 border border-indigo-200">XLOOKUP</code> and dynamic arrays improved model calculation speed by <strong className="text-indigo-900">4x</strong> across 35,000 corporate rows while eliminating 100% of <code className="font-mono text-rose-700">#N/A</code> and reference break errors.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
   // Fallback: Standard Generic Bar Visualizer
   // -------------------------------------------------------------
   const renderGenericProjectChart = () => {
@@ -2853,7 +3560,7 @@ ORDER BY branch, total_revenue DESC;`;
             Live Interactive Analytics Playground
           </h2>
           <p className="mt-4 text-base text-slate-600 leading-relaxed">
-            As a data analyst, static slides don't do complex datasets justice. Interact with simulated pipeline outputs and diagnostic models from my twenty GitHub showcase repositories below.
+            As a data analyst, static slides don't do complex datasets justice. Interact with simulated pipeline outputs and diagnostic models from my twenty-five GitHub showcase repositories below.
           </p>
         </div>
 
@@ -2970,6 +3677,11 @@ ORDER BY branch, total_revenue DESC;`;
               {activeProject.id === 'contact-extractor-regex' && renderContactExtractorRegex()}
               {activeProject.id === 'adult-incomes-eda' && renderAdultIncomesChart()}
               {activeProject.id === 'google-play-store-eda' && renderGooglePlayStoreChart()}
+              {activeProject.id === 'ecommerce-eda' && renderEcommerceEdaChart()}
+              {activeProject.id === 'chocolate-sales-sql' && renderChocolateSalesSqlChart()}
+              {activeProject.id === 'component-cost-workforce-analytics-excel' && renderComponentCostWorkforceChart()}
+              {activeProject.id === 'student-stock-analysis-excel' && renderStudentStockAnalysisChart()}
+              {activeProject.id === 'formula-basics-excel' && renderFormulaBasicsChart()}
               {![
                 'lending-club-default',
                 'football-match-analytics',
@@ -2990,7 +3702,12 @@ ORDER BY branch, total_revenue DESC;`;
                 'url-extractor-regex',
                 'contact-extractor-regex',
                 'adult-incomes-eda',
-                'google-play-store-eda'
+                'google-play-store-eda',
+                'ecommerce-eda',
+                'chocolate-sales-sql',
+                'component-cost-workforce-analytics-excel',
+                'student-stock-analysis-excel',
+                'formula-basics-excel'
               ].includes(activeProject.id) && renderGenericProjectChart()}
             </div>
           </div>
