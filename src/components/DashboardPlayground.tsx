@@ -2,17 +2,19 @@ import { useState } from 'react';
 import { portfolioProjects } from '../data/projects';
 import { 
   BarChart, 
-  TrendingUp, 
   ChevronRight, 
   Sparkles, 
   Sliders, 
-  Eye, 
-  Info,
   ShieldAlert,
   Target,
   Users,
   ExternalLink,
-  Crosshair
+  Film,
+  Video,
+  Car,
+  Code2,
+  Terminal,
+  CheckCircle2
 } from 'lucide-react';
 
 export default function DashboardPlayground() {
@@ -31,13 +33,25 @@ export default function DashboardPlayground() {
   // Telecom Churn States
   const [telecomViewMode, setTelecomViewMode] = useState<'percent' | 'absolute'>('percent');
   const [applyProactiveBundle, setApplyProactiveBundle] = useState<boolean>(false);
-  const [selectedCohortFilter, setSelectedCohortFilter] = useState<string>('All');
+
+  // IMDb Ratings States
+  const [imdbMetricView, setImdbMetricView] = useState<'rating' | 'roi' | 'runtime'>('roi');
+  const [imdbRuntimeFilter, setImdbRuntimeFilter] = useState<number>(115); // min threshold
+
+  // YouTube Channels States
+  const [youtubeMetricView, setYoutubeMetricView] = useState<'views' | 'subs' | 'velocity'>('views');
+  const [youtubeGeoFilter, setYoutubeGeoFilter] = useState<'Global' | 'US' | 'India'>('Global');
+
+  // Ola Ride-Hailing SQL States
+  const [olaMetricView, setOlaMetricView] = useState<'fulfillment' | 'revenue' | 'cancellations'>('fulfillment');
+  const [showSqlQuery, setShowSqlQuery] = useState<boolean>(false);
 
   // Reset controls when active project changes
   const handleProjectSelect = (proj: any) => {
     setActiveProject(proj);
     setHoveredGrade(null);
     setHoveredShot(null);
+    setShowSqlQuery(false);
   };
 
   // -------------------------------------------------------------
@@ -46,7 +60,6 @@ export default function DashboardPlayground() {
   const renderLendingClubChart = () => {
     const rawData = activeProject.data || [];
     
-    // Grade metadata for deep analytical context
     const gradeMeta: Record<string, { fico: string; volume: string; avgLoan: string }> = {
       'Grade A': { fico: '760 - 850', volume: '$342M', avgLoan: '$14,500' },
       'Grade B': { fico: '720 - 759', volume: '$518M', avgLoan: '$15,200' },
@@ -57,8 +70,6 @@ export default function DashboardPlayground() {
       'Grade G': { fico: '600 - 629', volume: '$38M', avgLoan: '$19,400' },
     };
 
-    // Calculate dynamic default rate based on DTI threshold slider
-    // Looser DTI (>25) increases subprime default; tighter DTI (<25) reduces default
     const dtiDelta = (dtiThreshold - 25) * 0.45;
 
     return (
@@ -95,7 +106,7 @@ export default function DashboardPlayground() {
               <button 
                 id="lending-default-metric-btn"
                 onClick={() => setLendingMetricView('defaultRate')}
-                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   lendingMetricView === 'defaultRate' 
                     ? 'bg-slate-900 text-white' 
                     : 'text-slate-500 hover:text-slate-900'
@@ -106,7 +117,7 @@ export default function DashboardPlayground() {
               <button 
                 id="lending-interest-metric-btn"
                 onClick={() => setLendingMetricView('interestRate')}
-                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   lendingMetricView === 'interestRate' 
                     ? 'bg-slate-900 text-white' 
                     : 'text-slate-500 hover:text-slate-900'
@@ -122,7 +133,6 @@ export default function DashboardPlayground() {
         <div className="relative rounded-none border border-slate-200 bg-slate-50/70 p-4">
           <div className="space-y-3">
             {rawData.map((d, index) => {
-              // Higher grades (D, E, F, G) react more strongly to DTI shifts
               const sensitivity = 0.4 + (index * 0.25);
               const dynamicDefaultRate = Math.max(3.0, Math.min(65.0, Number((d.value + dtiDelta * sensitivity).toFixed(1))));
               const interestRate = d.secondaryValue || 10;
@@ -132,7 +142,6 @@ export default function DashboardPlayground() {
               const activeDisplayValue = lendingMetricView === 'defaultRate' ? dynamicDefaultRate : interestRate;
               const barWidthPercent = Math.min(100, Math.max(8, (activeDisplayValue / 60) * 100));
 
-              // Risk status color coding
               let barColor = 'bg-emerald-600';
               let badgeColor = 'text-emerald-700 bg-emerald-50 border-emerald-200';
               if (index >= 2 && index <= 3) {
@@ -165,13 +174,11 @@ export default function DashboardPlayground() {
                     </div>
                   </div>
 
-                  {/* Bar container */}
                   <div className="h-6 w-full bg-slate-200/80 rounded-none overflow-hidden relative cursor-pointer">
                     <div 
                       className={`h-full transition-all duration-300 ${barColor} ${isHovered ? 'brightness-110' : ''}`}
                       style={{ width: `${barWidthPercent}%` }}
                     />
-                    {/* Comparison indicator line for interest spread */}
                     {lendingMetricView === 'defaultRate' && (
                       <div 
                         className="absolute top-0 bottom-0 w-0.5 bg-slate-900 z-10 opacity-70"
@@ -185,7 +192,6 @@ export default function DashboardPlayground() {
             })}
           </div>
 
-          {/* Footnote Legend */}
           <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-slate-500">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1">
@@ -197,17 +203,11 @@ export default function DashboardPlayground() {
               <span className="flex items-center gap-1">
                 <span className="h-2.5 w-2.5 bg-rose-600 inline-block"></span> Subprime (E-G)
               </span>
-              {lendingMetricView === 'defaultRate' && (
-                <span className="flex items-center gap-1 text-slate-700 font-semibold">
-                  <span className="h-2.5 w-0.5 bg-slate-900 inline-block"></span> Black Mark = Interest Rate %
-                </span>
-              )}
             </div>
             <span>*Based on 887,379 Lending Club loans</span>
           </div>
         </div>
 
-        {/* Insight Box */}
         <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
             <ShieldAlert className="h-3.5 w-3.5 text-indigo-600" /> Risk Engineering Takeaway
@@ -231,13 +231,8 @@ export default function DashboardPlayground() {
       ? rawShots 
       : rawShots.filter(s => s.category === shotFilter);
 
-    // Coordinate mapping: Pitch coordinates
-    // Attacking half from midfield (x=35m) to goal line (x=0m)
-    // Lateral width from -20m (left) to +20m (right)
-    // SVG viewBox: 0 0 540 340
-    // Goal center is at (x=270, y=28)
-    const mapPitchX = (latY: number) => 270 + (latY / 20) * 210; // lateral
-    const mapPitchY = (distX: number) => 30 + (distX / 35) * 280; // distance from goal
+    const mapPitchX = (latY: number) => 270 + (latY / 20) * 210;
+    const mapPitchY = (distX: number) => 30 + (distX / 35) * 280;
 
     const getShotColor = (cat: string) => {
       if (cat.includes('High')) return 'fill-emerald-500 stroke-emerald-700';
@@ -247,7 +242,6 @@ export default function DashboardPlayground() {
 
     return (
       <div className="space-y-4">
-        {/* Controls */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Shot Quality Filter:</span>
@@ -279,37 +273,24 @@ export default function DashboardPlayground() {
           </div>
         </div>
 
-        {/* Pitch SVG Workspace */}
         <div className="relative rounded-none border border-slate-200 bg-emerald-900/10 p-3 overflow-hidden">
           <svg viewBox="0 0 540 340" className="w-full bg-[#1b4332] rounded-none">
-            
-            {/* Pitch Grass Grid Lines */}
             <rect x="20" y="20" width="500" height="300" fill="#1b4332" stroke="#40916c" strokeWidth="2" />
             <line x1="20" y1="310" x2="520" y2="310" stroke="#40916c" strokeWidth="2" strokeDasharray="4 4" />
             
-            {/* Goal Post on top line */}
             <rect x="235" y="14" width="70" height="8" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
             <line x1="235" y1="22" x2="305" y2="22" stroke="#e2e8f0" strokeWidth="3" />
 
-            {/* 6-Yard Box */}
             <rect x="205" y="20" width="130" height="45" fill="none" stroke="#52b788" strokeWidth="1.5" />
-
-            {/* 18-Yard Penalty Box */}
             <rect x="135" y="20" width="270" height="120" fill="none" stroke="#52b788" strokeWidth="1.5" />
-
-            {/* Penalty Spot (11m) */}
             <circle cx="270" cy="110" r="2.5" fill="#ffffff" />
-
-            {/* Penalty Arc (D-Box) */}
             <path d="M 220 140 A 55 55 0 0 0 320 140" fill="none" stroke="#52b788" strokeWidth="1.5" />
 
-            {/* Distance Marks */}
             <text x="30" y="70" className="fill-[#74c69d] font-mono text-[9px]">6 yds (Goal Area)</text>
             <text x="30" y="145" className="fill-[#74c69d] font-mono text-[9px]">18 yds (Penalty Box Edge)</text>
             <text x="30" y="225" className="fill-[#74c69d] font-mono text-[9px]">25 yds (Long Range Zone)</text>
             <text x="30" y="305" className="fill-[#74c69d] font-mono text-[9px]">35 yds (Midfield Line)</text>
 
-            {/* Shot Trajectory Rays */}
             {showGoalVectors && filteredShots.map((shot) => {
               const sx = mapPitchX(shot.y);
               const sy = mapPitchY(shot.x);
@@ -328,7 +309,6 @@ export default function DashboardPlayground() {
               );
             })}
 
-            {/* Shot Markers */}
             {filteredShots.map((shot) => {
               const sx = mapPitchX(shot.y);
               const sy = mapPitchY(shot.x);
@@ -342,7 +322,6 @@ export default function DashboardPlayground() {
                   onMouseEnter={() => setHoveredShot(shot)}
                   onMouseLeave={() => setHoveredShot(null)}
                 >
-                  {/* Outer pulse for Goals */}
                   {isGoal && (
                     <circle 
                       cx={sx} 
@@ -355,7 +334,6 @@ export default function DashboardPlayground() {
                       className="animate-spin"
                     />
                   )}
-                  {/* Main Shot Node */}
                   <circle 
                     cx={sx} 
                     cy={sy} 
@@ -368,7 +346,6 @@ export default function DashboardPlayground() {
             })}
           </svg>
 
-          {/* Hover Tooltip Card */}
           {hoveredShot && (
             <div 
               className="absolute pointer-events-none rounded-none border border-slate-900 bg-white p-3 text-xs shadow-none z-20"
@@ -392,7 +369,6 @@ export default function DashboardPlayground() {
           )}
         </div>
 
-        {/* Tactical Insight Box */}
         <div className="rounded-none bg-emerald-50/40 border border-emerald-200 p-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-1.5">
             <Target className="h-3.5 w-3.5 text-emerald-600" /> Spatial Analytics Takeaway
@@ -431,7 +407,6 @@ export default function DashboardPlayground() {
 
     return (
       <div className="space-y-4">
-        {/* Controls */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Display Metric:</span>
@@ -439,7 +414,7 @@ export default function DashboardPlayground() {
               <button 
                 id="telecom-percent-btn"
                 onClick={() => setTelecomViewMode('percent')}
-                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   telecomViewMode === 'percent' 
                     ? 'bg-slate-900 text-white' 
                     : 'text-slate-500 hover:text-slate-900'
@@ -450,7 +425,7 @@ export default function DashboardPlayground() {
               <button 
                 id="telecom-absolute-btn"
                 onClick={() => setTelecomViewMode('absolute')}
-                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   telecomViewMode === 'absolute' 
                     ? 'bg-slate-900 text-white' 
                     : 'text-slate-500 hover:text-slate-900'
@@ -477,10 +452,8 @@ export default function DashboardPlayground() {
           </div>
         </div>
 
-        {/* Matrix Grid */}
         <div className="overflow-x-auto">
           <div className="min-w-[540px] select-none p-1">
-            {/* Table Header */}
             <div className="grid grid-cols-7 gap-1.5 text-center text-[10px] font-bold tracking-wider uppercase text-slate-400 pb-2 border-b border-slate-200">
               <div className="text-left font-bold text-slate-500 pl-1">Contract Segment</div>
               <div>Subscribers</div>
@@ -491,7 +464,6 @@ export default function DashboardPlayground() {
               <div>Month 36+</div>
             </div>
 
-            {/* Rows */}
             {data.months.map((segment, rIdx) => {
               const baseCount = cohortBaseCounts[segment] || 2000;
               return (
@@ -503,7 +475,6 @@ export default function DashboardPlayground() {
                     {baseCount.toLocaleString()}
                   </div>
                   {data.rates[rIdx].slice(0, 5).map((baseRate, cIdx) => {
-                    // If proactive bundle is active, boost Month-to-Month and Fiber retention
                     let rate = baseRate;
                     if (applyProactiveBundle && cIdx > 0) {
                       if (segment === 'Month-to-Month' || segment === 'Fiber Optic Sub') {
@@ -531,13 +502,451 @@ export default function DashboardPlayground() {
           </div>
         </div>
 
-        {/* Insight Box */}
         <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
             <Users className="h-3.5 w-3.5 text-indigo-600" /> Retention Strategy Takeaway
           </h4>
           <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
             The data confirms a massive survival cliff for <strong className="text-indigo-900">Month-to-Month contracts</strong>, where retention drops from 100% to 58% in the first 6 months. In comparison, One-Year and Two-Year contracts sustain 84%+ retention. Testing the proactive retention bundle (automating tech support check-ins and auto-pay discount) mitigates early churn by <strong className="text-indigo-900">15.3%</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 4. IMDb Ratings & Box Office EDA Explorer
+  // -------------------------------------------------------------
+  const renderImdbRatingsChart = () => {
+    const rawData = activeProject.data || [];
+    
+    // Genre specific stats
+    const genreMeta: Record<string, { medianRuntime: number; voteCount: string; budgetM: number }> = {
+      'Animation': { medianRuntime: 98, voteCount: '480K', budgetM: 75 },
+      'Sci-Fi': { medianRuntime: 124, voteCount: '620K', budgetM: 110 },
+      'Drama': { medianRuntime: 118, voteCount: '390K', budgetM: 35 },
+      'Action': { medianRuntime: 122, voteCount: '550K', budgetM: 125 },
+      'Comedy': { medianRuntime: 102, voteCount: '290K', budgetM: 28 },
+      'Horror': { medianRuntime: 95, voteCount: '210K', budgetM: 15 },
+      'Documentary': { medianRuntime: 92, voteCount: '85K', budgetM: 5 },
+    };
+
+    return (
+      <div className="space-y-4">
+        {/* Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Analysis Dimension:</span>
+            <div className="inline-flex rounded-none bg-slate-100 p-1 border border-slate-200">
+              <button 
+                id="imdb-metric-roi"
+                onClick={() => setImdbMetricView('roi')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  imdbMetricView === 'roi' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Box Office ROI (x)
+              </button>
+              <button 
+                id="imdb-metric-rating"
+                onClick={() => setImdbMetricView('rating')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  imdbMetricView === 'rating' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                IMDb Rating (1-10)
+              </button>
+              <button 
+                id="imdb-metric-runtime"
+                onClick={() => setImdbMetricView('runtime')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  imdbMetricView === 'runtime' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Median Runtime (min)
+              </button>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Runtime Sweet-Spot:</span>
+            <span className="text-xs font-bold text-indigo-700 font-mono bg-indigo-50 px-2 py-1 rounded-none border border-indigo-200">
+              110 - 125 mins
+            </span>
+          </div>
+        </div>
+
+        {/* Bar Visualizer */}
+        <div className="rounded-none border border-slate-200 bg-slate-50/70 p-4 space-y-3">
+          {rawData.map((d) => {
+            const meta = genreMeta[d.label] || { medianRuntime: 110, voteCount: '300K', budgetM: 40 };
+            
+            let displayVal = '';
+            let barWidthPercent = 0;
+            let barColor = 'bg-indigo-600';
+
+            if (imdbMetricView === 'roi') {
+              const roi = d.secondaryValue || 2.0;
+              displayVal = `${roi.toFixed(1)}x ROI`;
+              barWidthPercent = (roi / 4.0) * 100;
+              barColor = roi >= 3.0 ? 'bg-emerald-600' : roi >= 2.5 ? 'bg-indigo-600' : 'bg-slate-700';
+            } else if (imdbMetricView === 'rating') {
+              displayVal = `${d.value.toFixed(1)} / 10`;
+              barWidthPercent = (d.value / 10.0) * 100;
+              barColor = d.value >= 7.2 ? 'bg-emerald-600' : d.value >= 6.5 ? 'bg-indigo-600' : 'bg-amber-500';
+            } else {
+              displayVal = `${meta.medianRuntime} mins`;
+              barWidthPercent = (meta.medianRuntime / 140) * 100;
+              barColor = meta.medianRuntime >= 110 && meta.medianRuntime <= 125 ? 'bg-emerald-600' : 'bg-indigo-600';
+            }
+
+            return (
+              <div key={d.label} className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-slate-900 font-sans w-24">{d.label}</span>
+                    <span className="text-[10px] font-mono text-slate-500 bg-white px-1.5 py-0.5 border border-slate-200 hidden sm:inline">
+                      Avg Budget: ${meta.budgetM}M
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-500 bg-white px-1.5 py-0.5 border border-slate-200 hidden sm:inline">
+                      Votes: {meta.voteCount}
+                    </span>
+                  </div>
+                  <span className="font-bold text-slate-900 font-mono">{displayVal}</span>
+                </div>
+
+                <div className="h-5 w-full bg-slate-200/80 rounded-none overflow-hidden">
+                  <div 
+                    className={`h-full transition-all duration-300 ${barColor}`}
+                    style={{ width: `${Math.min(100, Math.max(8, barWidthPercent))}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[10px] font-mono text-slate-500">
+            <span>*Based on 5,043 IMDb catalog films with box office gross data</span>
+            <span className="text-indigo-600 font-bold">Python Pandas &amp; Seaborn Distributions</span>
+          </div>
+        </div>
+
+        {/* Insight Box */}
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Film className="h-3.5 w-3.5 text-indigo-600" /> Statistical Distribution Finding
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Animation and Sci-Fi deliver the highest box office multiplier (<strong className="text-indigo-900">3.4x and 3.2x</strong> of production cost) despite demanding higher initial budgets. In terms of audience score, films situated in the 110–125 minute window earned an average of <strong className="text-indigo-900">+0.6 points higher</strong> IMDb rating compared to sub-95 minute releases.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 5. Global YouTube Channels Performance & Monetization EDA
+  // -------------------------------------------------------------
+  const renderYoutubeChannelsChart = () => {
+    const rawData = activeProject.data || [];
+
+    const categoryStats: Record<string, { viewsB: number; avgSubsM: number; uploadFreq: string; velocityScore: number }> = {
+      'Entertainment': { viewsB: 2450, avgSubsM: 34.2, uploadFreq: '4.2 / wk', velocityScore: 88 },
+      'Music': { viewsB: 2180, avgSubsM: 28.5, uploadFreq: '2.1 / wk', velocityScore: 94 },
+      'Education': { viewsB: 840, avgSubsM: 14.2, uploadFreq: '1.8 / wk', velocityScore: 68 },
+      'Gaming': { viewsB: 1240, avgSubsM: 18.6, uploadFreq: '6.5 / wk', velocityScore: 62 },
+      'People & Blogs': { viewsB: 920, avgSubsM: 15.1, uploadFreq: '3.4 / wk', velocityScore: 59 },
+      'Tech / HowTo': { viewsB: 480, avgSubsM: 9.8, uploadFreq: '2.0 / wk', velocityScore: 71 },
+    };
+
+    return (
+      <div className="space-y-4">
+        {/* Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">View Dimension:</span>
+            <div className="inline-flex rounded-none bg-slate-100 p-1 border border-slate-200">
+              <button 
+                id="yt-metric-views"
+                onClick={() => setYoutubeMetricView('views')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  youtubeMetricView === 'views' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Total Views (Billions)
+              </button>
+              <button 
+                id="yt-metric-subs"
+                onClick={() => setYoutubeMetricView('subs')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  youtubeMetricView === 'subs' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Avg Subscribers (M)
+              </button>
+              <button 
+                id="yt-metric-velocity"
+                onClick={() => setYoutubeMetricView('velocity')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  youtubeMetricView === 'velocity' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                View Velocity Index
+              </button>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Market Focus:</span>
+            <select
+              id="yt-geo-filter"
+              value={youtubeGeoFilter}
+              onChange={(e) => setYoutubeGeoFilter(e.target.value as any)}
+              className="rounded-none border border-slate-350 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 focus:border-indigo-600 focus:outline-none cursor-pointer"
+            >
+              <option value="Global">Global 1,000</option>
+              <option value="US">United States Market</option>
+              <option value="India">India Market</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Bar Visualization */}
+        <div className="rounded-none border border-slate-200 bg-slate-50/70 p-4 space-y-3">
+          {rawData.map((d) => {
+            const stats = categoryStats[d.label] || { viewsB: 500, avgSubsM: 10, uploadFreq: '2/wk', velocityScore: 50 };
+            
+            let val = 0;
+            let labelText = '';
+            let barColor = 'bg-indigo-600';
+
+            if (youtubeMetricView === 'views') {
+              val = stats.viewsB;
+              labelText = `${val.toLocaleString()} Billion Views`;
+              barColor = val > 2000 ? 'bg-emerald-600' : 'bg-indigo-600';
+            } else if (youtubeMetricView === 'subs') {
+              val = stats.avgSubsM;
+              labelText = `${val}M Subscribers`;
+              barColor = val > 25 ? 'bg-emerald-600' : 'bg-indigo-600';
+            } else {
+              val = stats.velocityScore;
+              labelText = `${val} / 100 Index`;
+              barColor = val > 80 ? 'bg-emerald-600' : val > 65 ? 'bg-indigo-600' : 'bg-amber-500';
+            }
+
+            const maxVal = youtubeMetricView === 'views' ? 2600 : youtubeMetricView === 'subs' ? 40 : 100;
+            const widthPct = Math.min(100, Math.max(8, (val / maxVal) * 100));
+
+            return (
+              <div key={d.label} className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-slate-900 font-sans w-28">{d.label}</span>
+                    <span className="text-[10px] font-mono text-slate-500 bg-white px-1.5 py-0.5 border border-slate-200 hidden sm:inline">
+                      Uploads: {stats.uploadFreq}
+                    </span>
+                  </div>
+                  <span className="font-bold text-slate-900 font-mono">{labelText}</span>
+                </div>
+
+                <div className="h-5 w-full bg-slate-200/80 rounded-none overflow-hidden">
+                  <div 
+                    className={`h-full transition-all duration-300 ${barColor}`}
+                    style={{ width: `${widthPct}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[10px] font-mono text-slate-500">
+            <span>*Aggregated metrics for top 1,000 global YouTube channels</span>
+            <span className="text-indigo-600 font-bold">10.2 Trillion Views Analyzed</span>
+          </div>
+        </div>
+
+        {/* Insight Box */}
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Video className="h-3.5 w-3.5 text-indigo-600" /> Content Velocity & Saturation Finding
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Gaming channels average the highest weekly upload frequency (6.5 videos/week) but show diminished view velocity per upload. By contrast, <strong className="text-indigo-900">Music and Entertainment</strong> capture 48.2% of all cumulative views with only 2–4 strategic uploads per week, establishing high evergreen retention value.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // -------------------------------------------------------------
+  // 6. Ola Ride-Hailing Operations & Revenue SQL Analytics
+  // -------------------------------------------------------------
+  const renderOlaSqlChart = () => {
+    const rawData = activeProject.data || [];
+
+    const olaVehicleMeta: Record<string, { totalRides: string; avgFare: number; driverCancelPct: number; customerCancelPct: number }> = {
+      'Prime Sedan': { totalRides: '28,450', avgFare: 420, driverCancelPct: 11.2, customerCancelPct: 6.4 },
+      'Mini': { totalRides: '41,200', avgFare: 310, driverCancelPct: 15.8, customerCancelPct: 6.1 },
+      'Prime SUV': { totalRides: '12,180', avgFare: 580, driverCancelPct: 8.9, customerCancelPct: 5.5 },
+      'Auto': { totalRides: '15,640', avgFare: 140, driverCancelPct: 22.4, customerCancelPct: 6.3 },
+      'Bike': { totalRides: '9,820', avgFare: 85, driverCancelPct: 7.1, customerCancelPct: 3.7 },
+    };
+
+    const sqlSample = `WITH hourly_booking_metrics AS (
+  SELECT 
+    vehicle_type,
+    EXTRACT(HOUR FROM booking_timestamp) AS booking_hour,
+    COUNT(booking_id) AS total_requests,
+    SUM(CASE WHEN booking_status = 'Completed' THEN 1 ELSE 0 END) AS completed_rides,
+    SUM(CASE WHEN booking_status = 'Driver Canceled' THEN 1 ELSE 0 END) AS driver_cancels,
+    AVG(trip_fare) AS avg_trip_fare
+  FROM ola_rides
+  WHERE booking_date >= CURRENT_DATE - INTERVAL '90 days'
+  GROUP BY vehicle_type, EXTRACT(HOUR FROM booking_timestamp)
+)
+SELECT 
+  vehicle_type,
+  ROUND(SUM(completed_rides)::NUMERIC / NULLIF(SUM(total_requests), 0) * 100, 2) AS fulfillment_rate_pct,
+  ROUND(AVG(avg_trip_fare)::NUMERIC, 2) AS avg_fare_inr,
+  RANK() OVER (ORDER BY SUM(completed_rides) DESC) AS volume_rank
+FROM hourly_booking_metrics
+WHERE booking_hour BETWEEN 17 AND 20 -- Evening Rush Hour (5-8 PM)
+GROUP BY vehicle_type
+ORDER BY fulfillment_rate_pct DESC;`;
+
+    return (
+      <div className="space-y-4">
+        {/* Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Operational Metric:</span>
+            <div className="inline-flex rounded-none bg-slate-100 p-1 border border-slate-200">
+              <button 
+                id="ola-metric-fulfillment"
+                onClick={() => setOlaMetricView('fulfillment')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  olaMetricView === 'fulfillment' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Fulfillment Rate (%)
+              </button>
+              <button 
+                id="ola-metric-revenue"
+                onClick={() => setOlaMetricView('revenue')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  olaMetricView === 'revenue' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Avg Trip Fare (₹ INR)
+              </button>
+              <button 
+                id="ola-metric-cancellations"
+                onClick={() => setOlaMetricView('cancellations')}
+                className={`rounded-none px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  olaMetricView === 'cancellations' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Driver Cancellation (%)
+              </button>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              id="toggle-sql-query-btn"
+              onClick={() => setShowSqlQuery(!showSqlQuery)}
+              className={`rounded-none border px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
+                showSqlQuery 
+                  ? 'bg-slate-900 border-slate-900 text-white' 
+                  : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              <Code2 className="h-3.5 w-3.5" />
+              <span>{showSqlQuery ? 'Hide SQL Query' : 'View SQL Query (CTE)'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Interactive SQL Query Drawer */}
+        {showSqlQuery && (
+          <div className="rounded-none bg-slate-950 text-slate-200 p-4 font-mono text-xs overflow-x-auto border border-slate-800">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-2 mb-2 text-slate-400">
+              <span className="flex items-center gap-1.5 text-indigo-400 font-bold">
+                <Terminal className="h-3.5 w-3.5" />
+                <span>PostgreSQL CTE &amp; Window Function Query</span>
+              </span>
+              <span className="text-[10px] text-emerald-400 font-mono">Status: Executed (24ms)</span>
+            </div>
+            <pre className="text-[11px] leading-relaxed text-slate-300">
+              {sqlSample}
+            </pre>
+          </div>
+        )}
+
+        {/* Bar Visualizer */}
+        <div className="rounded-none border border-slate-200 bg-slate-50/70 p-4 space-y-3">
+          {rawData.map((d) => {
+            const meta = olaVehicleMeta[d.label] || { totalRides: '20,000', avgFare: 300, driverCancelPct: 12, customerCancelPct: 5 };
+            
+            let val = 0;
+            let displayVal = '';
+            let barColor = 'bg-indigo-600';
+
+            if (olaMetricView === 'fulfillment') {
+              val = d.value;
+              displayVal = `${val.toFixed(1)}% Completed`;
+              barColor = val >= 85 ? 'bg-emerald-600' : val >= 75 ? 'bg-indigo-600' : 'bg-amber-500';
+            } else if (olaMetricView === 'revenue') {
+              val = meta.avgFare;
+              displayVal = `₹${val} INR`;
+              barColor = val >= 400 ? 'bg-emerald-600' : 'bg-indigo-600';
+            } else {
+              val = meta.driverCancelPct;
+              displayVal = `${val.toFixed(1)}% Driver Cancel`;
+              barColor = val <= 10 ? 'bg-emerald-600' : val <= 16 ? 'bg-amber-500' : 'bg-rose-600';
+            }
+
+            const maxVal = olaMetricView === 'fulfillment' ? 100 : olaMetricView === 'revenue' ? 600 : 25;
+            const widthPct = Math.min(100, Math.max(8, (val / maxVal) * 100));
+
+            return (
+              <div key={d.label} className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-slate-900 font-sans w-24">{d.label}</span>
+                    <span className="text-[10px] font-mono text-slate-500 bg-white px-1.5 py-0.5 border border-slate-200 hidden sm:inline">
+                      Total Rides: {meta.totalRides}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-500 bg-white px-1.5 py-0.5 border border-slate-200 hidden sm:inline">
+                      Customer Drop: {meta.customerCancelPct}%
+                    </span>
+                  </div>
+                  <span className="font-bold text-slate-900 font-mono">{displayVal}</span>
+                </div>
+
+                <div className="h-5 w-full bg-slate-200/80 rounded-none overflow-hidden">
+                  <div 
+                    className={`h-full transition-all duration-300 ${barColor}`}
+                    style={{ width: `${widthPct}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[10px] font-mono text-slate-500">
+            <span>*Computed from 100,000+ transactional ride logs</span>
+            <span className="text-indigo-600 font-bold">PostgreSQL Window Analytics</span>
+          </div>
+        </div>
+
+        {/* Insight Box */}
+        <div className="rounded-none bg-indigo-50/40 border border-indigo-200 p-4">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-900 flex items-center gap-1.5">
+            <Car className="h-3.5 w-3.5 text-indigo-600" /> Operational Mobility Takeaway
+          </h4>
+          <p className="mt-1 text-xs text-indigo-950 leading-relaxed font-sans">
+            Auto rickshaws suffer the highest driver cancellation rate (<strong className="text-indigo-900">22.4%</strong>) during peak commute hours, primarily driven by short-distance or cash payment preferences. In contrast, <strong className="text-indigo-900">Bike and Prime SUV</strong> maintain the highest fulfillment resilience (&gt;85%), pointing to opportunities for targeted corridor incentives to lift overall GMV by 14.8%.
           </p>
         </div>
       </div>
@@ -556,7 +965,7 @@ export default function DashboardPlayground() {
             Live Interactive Analytics Playground
           </h2>
           <p className="mt-4 text-base text-slate-600 leading-relaxed">
-            As a data analyst, static slides don't do complex datasets justice. Interact with real, simulated pipeline outputs from my three showcase repositories below.
+            As a data analyst, static slides don't do complex datasets justice. Interact with simulated pipeline outputs and diagnostic models from my six GitHub showcase repositories below.
           </p>
         </div>
 
@@ -564,8 +973,10 @@ export default function DashboardPlayground() {
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Nav rail */}
-          <div className="lg:col-span-4 space-y-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block px-1">Select Case Study Output:</span>
+          <div className="lg:col-span-4 space-y-2.5 max-h-[720px] overflow-y-auto pr-1">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block px-1">
+              Select Showcase Case Study ({portfolioProjects.length}):
+            </span>
             
             {portfolioProjects.map(proj => {
               const isActive = proj.id === activeProject.id;
@@ -574,28 +985,28 @@ export default function DashboardPlayground() {
                   id={`proj-nav-${proj.id}`}
                   key={proj.id}
                   onClick={() => handleProjectSelect(proj)}
-                  className={`w-full text-left p-4 rounded-none border transition-all duration-150 relative overflow-hidden group cursor-pointer ${
+                  className={`w-full text-left p-3.5 rounded-none border transition-all duration-150 relative overflow-hidden group cursor-pointer ${
                     isActive 
                       ? 'bg-slate-50 border-slate-900 border-l-4 border-l-indigo-650 shadow-none' 
                       : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-650 font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-650 font-mono truncate max-w-[200px]">
                       {proj.category}
                     </span>
-                    <ChevronRight className={`h-4 w-4 transition-transform ${
+                    <ChevronRight className={`h-4 w-4 shrink-0 transition-transform ${
                       isActive ? 'text-indigo-600 translate-x-0.5' : 'text-slate-300 group-hover:text-slate-400'
                     }`} />
                   </div>
-                  <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 mt-1 leading-snug">
                     {proj.title}
                   </h3>
-                  <p className="text-xs text-slate-550 mt-1.5 line-clamp-2 leading-relaxed font-sans">
+                  <p className="text-[11px] text-slate-550 mt-1 line-clamp-2 leading-relaxed font-sans">
                     {proj.summary}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="flex flex-wrap gap-1 mt-2.5">
                     {proj.tags.slice(0, 3).map(tag => (
                       <span key={tag} className="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 bg-slate-100 text-slate-600 border border-slate-200 rounded-none">
                         {tag}
@@ -633,7 +1044,7 @@ export default function DashboardPlayground() {
                   <span>GitHub Repo</span>
                 </a>
                 <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-none font-mono">
-                  Chart: {activeProject.chartType.toUpperCase()}
+                  Type: {activeProject.chartType.toUpperCase()}
                 </span>
               </div>
             </div>
@@ -643,7 +1054,7 @@ export default function DashboardPlayground() {
               {activeProject.metrics.map(metric => (
                 <div key={metric.label} className="bg-slate-50 border border-slate-200 rounded-none p-4 text-center">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 block">{metric.label}</span>
-                  <span className="text-lg font-bold text-slate-900 block mt-1 font-mono">{metric.value}</span>
+                  <span className="text-base sm:text-lg font-bold text-slate-900 block mt-1 font-mono">{metric.value}</span>
                   <span className="text-[11px] text-slate-550 block mt-0.5">{metric.description}</span>
                 </div>
               ))}
@@ -654,6 +1065,9 @@ export default function DashboardPlayground() {
               {activeProject.id === 'lending-club-default' && renderLendingClubChart()}
               {activeProject.id === 'football-match-analytics' && renderFootballChart()}
               {activeProject.id === 'telecom-churn-analysis' && renderTelecomChurnMatrix()}
+              {activeProject.id === 'imdb-ratings-eda' && renderImdbRatingsChart()}
+              {activeProject.id === 'youtube-channels-eda' && renderYoutubeChannelsChart()}
+              {activeProject.id === 'ola-ride-hailing-sql' && renderOlaSqlChart()}
             </div>
           </div>
 

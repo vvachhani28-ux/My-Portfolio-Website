@@ -33,6 +33,9 @@ export default function ResumeSection() {
         ['Projects', 'Credit Risk Modeling', 'Lending Club Default Analysis', '887K+ loans, 0.824 ROC-AUC, -18.7% loss reduction', 'Python / XGBoost'],
         ['Projects', 'Spatial Sports Analytics', 'Football Match Analytics', '380+ matches, 0.89 xG correlation, +22% box entries', 'Python / StatsBomb'],
         ['Projects', 'Customer Retention', 'Telecom Churn Analysis', '7,043 accounts, 26.5% baseline, -15.3% churn cut', 'Python / Power BI'],
+        ['Projects', 'Media & Box Office EDA', 'IMDb Ratings & Success EDA', '5,043 films, 110-125 min sweet-spot, 3.4x top ROI', 'Python / Seaborn'],
+        ['Projects', 'Creator Analytics', 'YouTube Channels Global EDA', '1,000 top channels, 10.2T views, 48% music & entertainment', 'Python / Pandas'],
+        ['Projects', 'Urban Mobility Operations', 'Ola Ride-Hailing SQL Analytics', '100K+ bookings, CTEs & window functions, +14.8% fulfillment', 'SQL / PostgreSQL'],
         ['Technical Skills', 'Languages', 'Querying & Coding', 'Python, SQL (PostgreSQL), R, JavaScript', 'Advanced Levels'],
         ['Technical Skills', 'Software', 'Business Intelligence', 'Power BI, Tableau, Advanced Excel, Git', 'Certifications Mapped'],
         ['Certifications', 'Microsoft Certification', 'PL-300 Exam', 'Microsoft Power BI Data Analyst Associate', 'Active Status'],
@@ -248,6 +251,48 @@ export default function ResumeSection() {
                 </div>
                 <p className="text-xs text-slate-600 font-sans leading-relaxed">
                   Diagnosed churn triggers across 7,043 subscriber profiles. Uncovered Month-to-Month survival drop-offs and structured retention intervention bundles cutting modeled churn by 15.3%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    IMDb Movie Ratings, Box Office & Genre Success EDA
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/IMDB-ratings-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Cleaned and explored 5,043 movie titles with Python & Seaborn. Isolated the 110–125 minute runtime rating sweet-spot and discovered that Sci-Fi and Animation deliver peak 3.4x box office ROI multipliers.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Global YouTube Channels Performance & Monetization EDA
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Youtube-channels-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Evaluated the top 1,000 global YouTube channels with 10.2T cumulative views. Modeled subscriber saturation curves and demonstrated that Music and Entertainment command 48.2% of global views.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Ola Ride-Hailing Operations & Revenue SQL Analytics
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/ola-ride-hailing-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Authored 25+ relational SQL queries with CTEs and window functions on 100,000+ booking logs. Resolved driver cancellation triggers and modeled corridor dispatches lifting fulfillment by 14.8%.
                 </p>
               </div>
             </div>

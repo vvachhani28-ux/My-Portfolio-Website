@@ -211,6 +211,9 @@ export default function ContactSection() {
                   <option value="Lending Club Default Risk Assessment">Lending Club Default Risk Analysis (Case #1)</option>
                   <option value="Football Match Spatial & xG Analytics">Football Match & xG Analytics (Case #2)</option>
                   <option value="Telecom Customer Churn Modeling">Telecom Churn Diagnostic (Case #3)</option>
+                  <option value="IMDb Ratings & Box Office EDA">IMDb Ratings & Box Office EDA (Case #4)</option>
+                  <option value="YouTube Channels Global Performance EDA">YouTube Channels Performance EDA (Case #5)</option>
+                  <option value="Ola Ride-Hailing SQL Analytics">Ola Ride-Hailing SQL Analytics (Case #6)</option>
                   <option value="Full-Time Hiring Opportunity">Full-Time Hiring Opportunity</option>
                   <option value="Custom Data Consultation">Custom Data Consultation</option>
                 </select>
