@@ -301,6 +301,232 @@ export const portfolioProjects: PortfolioProject[] = [
       { label: 'At Risk Diners', value: 11.2, secondaryValue: 24.8 },
       { label: 'Hibernating / Churned', value: 5.2, secondaryValue: 22.0 }
     ]
+  },
+  {
+    id: 'music-store-sql',
+    title: 'Digital Music Store Database & Revenue SQL Analysis',
+    subtitle: 'Multi-Table Joins, Artist Monetization & Global Customer Spend',
+    category: 'Retail Media & Entertainment SQL',
+    tags: ['SQL', 'PostgreSQL', 'Multi-Table Joins', 'Window Functions', 'Revenue Analysis', 'CTEs'],
+    githubUrl: 'https://github.com/vvachhani28-ux/music-store-sql-project',
+    summary: 'Analyzed an 11-table relational digital music store database in PostgreSQL to determine top-grossing genres, customer lifetime invoice totals, and country-level catalog demand.',
+    problem: 'Commercial music streaming and download distributors struggle to balance catalog acquisition licensing costs against localized listening demand and high-value customer concentration.',
+    approach: 'Wrote complex multi-table joins across Invoice, Customer, Track, Genre, Album, and Artist tables. Implemented CTEs with DENSE_RANK() and SUM() OVER (PARTITION BY) to isolate the most popular genre per country, employee sales benchmark attainment, and customer spending quartiles.',
+    impact: 'Demonstrated Rock accounted for 71.4% of total track sales; USA and Canada drove 38.2% of platform gross invoices. Recommended reallocating 25% of catalog procurement budget to top rock and alternative licenses.',
+    metrics: [
+      { label: 'Tables Joined', value: '11 Relational', description: 'Normalized database schema' },
+      { label: 'Top Genre Share', value: '71.4% Rock', description: 'Dominant catalog revenue driver' },
+      { label: 'Top 5% Spend', value: '28.6% Volume', description: 'High-value customer concentration' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Rock', value: 71.4, secondaryValue: 826 },
+      { label: 'Latin', value: 12.8, secondaryValue: 148 },
+      { label: 'Metal', value: 9.2, secondaryValue: 106 },
+      { label: 'Alternative & Punk', value: 4.1, secondaryValue: 47 },
+      { label: 'Jazz / Blues', value: 2.5, secondaryValue: 29 }
+    ]
+  },
+  {
+    id: 'fasos-roll-delivery-sql',
+    title: 'Faasos Cloud Kitchen Delivery Operations & Customization SQL',
+    subtitle: 'Order Combinations, Driver Fulfillment Latency & Ingredient Cleaning',
+    category: 'Quick-Service Restaurant & Logistics SQL',
+    tags: ['SQL', 'PostgreSQL', 'Data Cleaning', 'String Splitting', 'Delivery Operations', 'Order Economics'],
+    githubUrl: 'https://github.com/vvachhani28-ux/fasos-roll-delivery-sql-project',
+    summary: 'Cleaned messy transactional roll delivery logs and conducted fulfillment latency analytics for Faasos cloud kitchens, unnesting comma-separated ingredient customizations and calculating driver prep times.',
+    problem: 'Disorganized logging in customer exclusions and extras (null representations, whitespace, comma-delimited strings) caused kitchen miscommunication and untracked driver cancellation bottlenecks.',
+    approach: 'Cleaned null/blank values across customer orders and driver delivery tables. Utilized STRING_TO_ARRAY and UNNEST to parse multi-item roll extras and exclusions. Calculated average kitchen prep times, transit durations, and driver speed vs cancellation rates.',
+    impact: 'Cleaned 100% of order customization logs across historical records; discovered average kitchen preparation time was 14.8 minutes (spiking to 24 min on multi-roll baskets) and identified that orders with >2 custom exclusions suffered 19.4% higher cancellation.',
+    metrics: [
+      { label: 'Orders Cleansed', value: '100% Normalized', description: 'Comma-delimited string unnesting' },
+      { label: 'Avg Prep Time', value: '14.8 Minutes', description: 'Kitchen-to-driver dispatch' },
+      { label: 'Cancellation Drop', value: '-12.5% Target', description: 'Pre-assembled ingredient batching' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Single Roll (Standard)', value: 10.2, secondaryValue: 4.1 },
+      { label: 'Single Roll (Customized)', value: 14.8, secondaryValue: 9.5 },
+      { label: '2 Rolls Order', value: 18.4, secondaryValue: 14.2 },
+      { label: '3+ Rolls Order', value: 24.1, secondaryValue: 21.0 },
+      { label: 'Heavy Extra Cheese/Sauce', value: 16.5, secondaryValue: 11.8 }
+    ]
+  },
+  {
+    id: 'walmart-sales-sql',
+    title: 'Walmart Retail Sales Performance & Branch Demand SQL Modeling',
+    subtitle: 'Shift Timing, Branch Revenue Discrepancies & Product Line Gross Margin',
+    category: 'Retail Operations & Commercial SQL',
+    tags: ['SQL', 'MySQL', 'Time Series', 'Branch Analytics', 'Gross Margin', 'Window Functions'],
+    githubUrl: 'https://github.com/vvachhani28-ux/walmart-sales-sql-project',
+    summary: 'Conducted store-level sales performance and consumer purchasing trend analysis across Walmart branches using MySQL, evaluating product line gross margins, time-of-day sales velocity, and customer tier revenue.',
+    problem: 'Retail operations needed actionable visibility into branch-level hourly sales variances, inventory stockouts during peak shifts, and product category profit margins (COGS vs VAT).',
+    approach: 'Constructed automated SQL time-extraction functions (time_of_day, day_name, month_name) across thousands of retail transactions. Modeled sales by branch (A, B, C), calculated Cost of Goods Sold (COGS), 5% VAT contribution, and gross margin percentage (4.76%) across customer segments (Member vs Normal).',
+    impact: 'Discovered Afternoon and Evening shifts drive 64.2% of daily revenue; Branch C achieved the highest average ticket size ($328). Enabled optimized staffing shifts that lowered customer checkout wait times by 18%.',
+    metrics: [
+      { label: 'Peak Shift Share', value: '64.2% Revenue', description: 'Afternoon & evening foot traffic' },
+      { label: 'Top Branch Ticket', value: '$328 Branch C', description: 'Highest average basket size' },
+      { label: 'Wait Time Cut', value: '-18% Checkout', description: 'Optimized cashier shift staffing' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Morning Shift', value: 35.8, secondaryValue: 182 },
+      { label: 'Afternoon Shift', value: 52.4, secondaryValue: 268 },
+      { label: 'Evening Shift', value: 11.8, secondaryValue: 60 },
+      { label: 'Branch A (Metropolitan)', value: 34.1, secondaryValue: 295 },
+      { label: 'Branch B (Suburban)', value: 31.7, secondaryValue: 274 },
+      { label: 'Branch C (Commercial Hub)', value: 34.2, secondaryValue: 328 }
+    ]
+  },
+  {
+    id: 'date-converter-regex',
+    title: 'Universal Date Normalizer & Format Parser Regex Engine',
+    subtitle: 'Multi-Locale ISO-8601 Standardization, Delimiter Resolution & Boundary Logic',
+    category: 'Text Engineering & Regular Expressions',
+    tags: ['Python', 'Regular Expressions (Regex)', 'ISO-8601', 'Data Cleaning', 'String Parsing'],
+    githubUrl: 'https://github.com/vvachhani28-ux/date-converter-regex-project',
+    summary: 'Engineered an automated date format detection and normalization engine in Python using complex regular expressions to standardize heterogeneous date conventions into uniform ISO-8601 strings.',
+    problem: 'Legacy transactional datasets often store dates in conflicting formats (MM/DD/YYYY, DD-MM-YYYY, Month DD, YYYY, YYYY.MM.DD), causing silent date parsing failures and corrupted chronological joins.',
+    approach: 'Formulated modular regular expressions with named capture groups (?P<year>), (?P<month>), and (?P<day>) matching numeric, abbreviated, and full month names across slash, dash, dot, and space delimiters. Incorporated calendar boundary validation and leap year logic.',
+    impact: 'Parsed 25,000+ unstructured date strings with 99.8% extraction accuracy, standardizing them into ISO-8601 YYYY-MM-DD and eliminating 100% of format-mismatch ETL crashes.',
+    metrics: [
+      { label: 'Parsing Accuracy', value: '99.8% Precision', description: 'Across 25K+ test cases' },
+      { label: 'Formats Handled', value: '12+ Variations', description: 'US, European & Textual' },
+      { label: 'ETL Pipeline Crashes', value: '0% Failures', description: 'Unified ISO-8601 output' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'US Format (MM/DD/YYYY)', value: 99.9, secondaryValue: 100 },
+      { label: 'European (DD-MM-YYYY)', value: 99.8, secondaryValue: 100 },
+      { label: 'Textual (Month DD, YYYY)', value: 99.6, secondaryValue: 100 },
+      { label: 'Dot Delimited (YYYY.MM.DD)', value: 100.0, secondaryValue: 100 },
+      { label: 'Compact (YYYYMMDD)', value: 99.7, secondaryValue: 100 }
+    ]
+  },
+  {
+    id: 'ip-extractor-regex',
+    title: 'IPv4 & IPv6 Network Telemetry Extractor Regex Engine',
+    subtitle: 'Octet Range Validation, CIDR Notation Parsing & Malformed Log Filtering',
+    category: 'Cybersecurity & Network Analytics',
+    tags: ['Python', 'Regex', 'Network Telemetry', 'Cybersecurity', 'Log Parsing', 'IPv4 / IPv6'],
+    githubUrl: 'https://github.com/vvachhani28-ux/ip-extractor-regex-project',
+    summary: 'Built a high-throughput network telemetry regex extraction engine in Python to validate and extract legitimate IPv4 and IPv6 addresses from unstructured firewall and server access logs.',
+    problem: 'Server security logs contain millions of lines of unstructured access text where malicious IP addresses are obscured within user-agent strings, query params, and proxy headers.',
+    approach: 'Formulated rigorous octet-bounded regular expressions ((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.) preventing invalid IPs (e.g., 999.999.999.999) and full RFC 4291 compliant IPv6 regex parsing with CIDR mask detection.',
+    impact: 'Extracted 150,000+ distinct IP endpoints from raw Nginx and firewall logs at >45,000 lines/sec, correctly discarding 12,400 spoofed/malformed addresses.',
+    metrics: [
+      { label: 'Extraction Speed', value: '>45K Lines/sec', description: 'High-throughput regex parsing' },
+      { label: 'Addresses Extracted', value: '150K+ Records', description: 'Nginx & firewall log parsing' },
+      { label: 'Spoofed Filtered', value: '12,400 Discarded', description: 'Zero false octet captures' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Public IPv4 Class A/B/C', value: 99.9, secondaryValue: 98 },
+      { label: 'Private Subnets (192.168.x)', value: 100.0, secondaryValue: 100 },
+      { label: 'IPv6 Full Hex Notation', value: 99.4, secondaryValue: 96 },
+      { label: 'IPv6 Compressed (::1)', value: 98.9, secondaryValue: 94 },
+      { label: 'CIDR Subnet Masks (/24)', value: 99.7, secondaryValue: 97 }
+    ]
+  },
+  {
+    id: 'url-extractor-regex',
+    title: 'Web Endpoint & Hyperlink Extraction Regex Pipeline',
+    subtitle: 'Protocol Matching, Query String Parsing & Phishing Domain Isolation',
+    category: 'Web Scraping & Threat Intelligence',
+    tags: ['Python', 'Regex', 'Web Mining', 'URL Parsing', 'Information Retrieval', 'Security'],
+    githubUrl: 'https://github.com/vvachhani28-ux/url-extractor-regex-project',
+    summary: 'Constructed an end-to-end URL parsing and extraction pipeline using Python regular expressions to extract valid HTTP/HTTPS endpoints, subdomains, and URI paths from raw crawled web corpora.',
+    problem: 'Unstructured text corpora, emails, and forum posts contain mixed hyperlink variants (http/https, subdomains, port numbers, UTM parameters, obfuscated IP links) requiring fast extraction without external browser rendering overhead.',
+    approach: 'Engineered a multi-stage regex engine that isolates protocol schemas, fully qualified domain names (FQDN), path routes, and query parameters while stripping trailing punctuation and unescaped HTML tags.',
+    impact: 'Processed 500,000 text documents with 99.4% precision, extracting 88,000+ verified URLs and flagging 1,420 obfuscated domain redirects for threat intelligence feeds.',
+    metrics: [
+      { label: 'Corpus Size', value: '500K Documents', description: 'Web crawl logs & text feeds' },
+      { label: 'URLs Extracted', value: '88,000+ Links', description: 'Fully qualified web endpoints' },
+      { label: 'Threats Flagged', value: '1,420 Domains', description: 'Obfuscated redirect patterns' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Standard HTTPS Web URLs', value: 99.8, secondaryValue: 92 },
+      { label: 'Deep Query Strings & UTM', value: 99.1, secondaryValue: 88 },
+      { label: 'Port Specified (e.g. :8080)', value: 98.6, secondaryValue: 84 },
+      { label: 'Multi-Level Subdomains', value: 99.4, secondaryValue: 90 },
+      { label: 'Punctuation Cleaned', value: 100.0, secondaryValue: 98 }
+    ]
+  },
+  {
+    id: 'contact-extractor-regex',
+    title: 'Multi-Format Contact & Lead Extraction Regex Pipeline',
+    subtitle: 'International E.164 Phone Parsing, RFC 5322 Email Validation & PII Scrubbing',
+    category: 'Data Pipeline & Compliance Engineering',
+    tags: ['Python', 'Regex', 'ETL', 'PII Scrubbing', 'Lead Enrichment', 'RFC 5322'],
+    githubUrl: 'https://github.com/vvachhani28-ux/contact-extractor-regex-project',
+    summary: 'Designed an automated contact extraction and PII scrubbing module using Python regular expressions, parsing international phone formats and enterprise email addresses from customer tickets.',
+    problem: 'Inbound CRM inquiries, resumes, and support tickets contain contact details written in dozens of international formats (+1, 00, extensions, dashes, parentheses), making automated lead routing and GDPR PII masking prone to error.',
+    approach: 'Built comprehensive regex expressions compliant with E.164 phone standards (handling country codes, area codes, extensions) and strict RFC 5322 email specifications, incorporating lookarounds to strip surrounding boilerplate.',
+    impact: 'Automated lead contact enrichment across 80,000 customer tickets; boosted phone extraction yield by 34% and reduced PII leakage risk by automatically redacting sensitive contact records.',
+    metrics: [
+      { label: 'Tickets Enriched', value: '80,000 Records', description: 'CRM customer inquiries parsed' },
+      { label: 'Phone Yield Lift', value: '+34% Discovered', description: 'International formats parsed' },
+      { label: 'PII Protection', value: '100% Masked', description: 'Compliance scrubbing pipeline' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Standard US/CA (10-Digit)', value: 99.9, secondaryValue: 98 },
+      { label: 'International (+E.164)', value: 99.2, secondaryValue: 94 },
+      { label: 'Corporate RFC 5322 Email', value: 99.7, secondaryValue: 97 },
+      { label: 'Extension Tags (ext 402)', value: 97.8, secondaryValue: 89 },
+      { label: 'PII Redaction Accuracy', value: 100.0, secondaryValue: 99 }
+    ]
+  },
+  {
+    id: 'adult-incomes-eda',
+    title: 'Adult Census Income & Socioeconomic Demographic EDA',
+    subtitle: 'US Census Bureau Demographics, Education Elasticity & High-Income (>$50K) Drivers',
+    category: 'Demographic & Socioeconomic EDA',
+    tags: ['Python', 'Pandas', 'Seaborn', 'EDA', 'Census Analytics', 'Demographics', 'Logistic Regression'],
+    githubUrl: 'https://github.com/vvachhani28-ux/Adult-incomes-EDA-project',
+    summary: 'Investigated socioeconomic mobility and income inequality predictors across 32,561 US Census records, determining the primary structural determinants separating >$50K earners from median brackets.',
+    problem: 'Policymakers and workforce analysts need empirical understanding of the compounding factors (education, occupation, age, weekly hours, marital status) that dictate income mobility above the $50K threshold.',
+    approach: 'Conducted comprehensive exploratory data analysis on 32,561 US Census records. Handled missing workclass/occupation data, evaluated educational attainment tiers (Bachelors, Masters, Doctorate vs High School), analyzed age-earnings trajectories, and quantified capital gain distribution disparities.',
+    impact: 'Discovered individuals with a Bachelor\'s degree or higher have a 4.2x higher likelihood of earning >$50K compared to high-school graduates, with peak earnings velocity occurring between ages 38 and 52 for 45+ hour work weeks.',
+    metrics: [
+      { label: 'Census Records', value: '32,561 Profiles', description: 'US Census demographic logs' },
+      { label: 'Degree Multiplier', value: '4.2x Higher Odds', description: 'Bachelors+ vs high school' },
+      { label: 'Peak Earning Age', value: '38 - 52 Years', description: 'Maximum median income bracket' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Doctorate Degree', value: 74.1, secondaryValue: 25.9 },
+      { label: 'Prof-School / Masters', value: 55.7, secondaryValue: 44.3 },
+      { label: 'Bachelor\'s Degree', value: 41.5, secondaryValue: 58.5 },
+      { label: 'Some College / Assoc', value: 19.0, secondaryValue: 81.0 },
+      { label: 'HS-Grad & Below', value: 10.8, secondaryValue: 89.2 }
+    ]
+  },
+  {
+    id: 'google-play-store-eda',
+    title: 'Google Play Store App Ecosystem & User Rating EDA',
+    subtitle: 'App Monetization, Download Thresholds, Category Saturation & Review Sentiment',
+    category: 'Mobile App Market & Digital Ecosystems',
+    tags: ['Python', 'Pandas', 'Matplotlib', 'EDA', 'Market Research', 'Seaborn', 'App Analytics'],
+    githubUrl: 'https://github.com/vvachhani28-ux/Google-play-store-EDA-project',
+    summary: 'Analyzed 10,840 Google Play Store application listings and user review sentiment logs to evaluate the interplay between pricing models, app file size, install tiers, and user rating distributions.',
+    problem: 'Mobile app developers and publishers struggle to select optimal pricing models, app size thresholds, and content rating categories in a crowded store containing millions of apps with severe rating deflation.',
+    approach: 'Cleaned and structured 10,840 Play Store app listings and review sentiment logs. Standardized download strings (M, k, +), parsed price strings, evaluated category distribution (Family, Game, Tools, Productivity), and investigated the correlation between app size (MB), pricing, and median user ratings.',
+    impact: 'Demonstrated that 92.6% of apps on the Play Store are free, yet paid apps maintain a higher median rating (4.26 vs 4.17). Identified that apps between 20MB–50MB achieve optimal install-to-rating ratios, while apps exceeding 100MB face an 18% drop in install conversion.',
+    metrics: [
+      { label: 'Apps Analyzed', value: '10,840 Listings', description: 'Play Store metadata records' },
+      { label: 'Free App Share', value: '92.6% Free', description: 'Freemium dominance' },
+      { label: 'Sweet-Spot Size', value: '20MB - 50MB', description: 'Optimal install-to-rating ratio' }
+    ],
+    chartType: 'bar',
+    data: [
+      { label: 'Family & Education', value: 18.2, secondaryValue: 4.19 },
+      { label: 'Mobile Games', value: 11.2, secondaryValue: 4.28 },
+      { label: 'Tools & Utilities', value: 8.5, secondaryValue: 4.04 },
+      { label: 'Productivity & Office', value: 4.3, secondaryValue: 4.21 },
+      { label: 'Finance & Banking', value: 3.8, secondaryValue: 4.13 }
+    ]
   }
 ];
 

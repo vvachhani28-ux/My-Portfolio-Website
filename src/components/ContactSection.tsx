@@ -219,6 +219,15 @@ export default function ContactSection() {
                   <option value="Password Strength & Entropy Validator">Password Strength Regex Checker (Case #9)</option>
                   <option value="Diagnostic EDA Foundations Benchmark">Data Analysis Warm-Up EDA (Case #10)</option>
                   <option value="Zomato Customer RFM Segmentation">Zomato Customer RFM Analytics (Case #11)</option>
+                  <option value="Digital Music Store SQL Analysis">Digital Music Store SQL (Case #12)</option>
+                  <option value="Faasos Roll Delivery & Kitchen SQL">Faasos Roll Delivery & Kitchen (Case #13)</option>
+                  <option value="Walmart Retail Sales Performance SQL">Walmart Retail Sales Performance (Case #14)</option>
+                  <option value="Universal Date Normalizer Regex">Universal Date Normalizer Regex (Case #15)</option>
+                  <option value="IPv4 & IPv6 Telemetry Regex Extractor">IPv4 & IPv6 Regex Extractor (Case #16)</option>
+                  <option value="Web Endpoint & Hyperlink Regex">Web URL Extractor Regex (Case #17)</option>
+                  <option value="Multi-Format Contact Regex Pipeline">Contact & PII Regex Extractor (Case #18)</option>
+                  <option value="Adult Census Income Demographics EDA">Adult Incomes Census EDA (Case #19)</option>
+                  <option value="Google Play Store App Ecosystem EDA">Google Play Store App EDA (Case #20)</option>
                   <option value="Full-Time Hiring Opportunity">Full-Time Hiring Opportunity</option>
                   <option value="Custom Data Consultation">Custom Data Consultation</option>
                 </select>

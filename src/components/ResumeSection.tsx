@@ -41,6 +41,15 @@ export default function ResumeSection() {
         ['Projects', 'Information Security', 'Password Strength & Entropy Validator', 'Shannon entropy scoring, 98.6% pattern detection, <2ms latency', 'Python / Regex'],
         ['Projects', 'Statistical Profiling', 'Diagnostic EDA Foundations Benchmark', 'Skewness/outliers triage automated, 3 hrs down to 8 mins', 'Python / Pandas'],
         ['Projects', 'Consumer Economics', 'Zomato RFM Customer Segmentation', '50,000+ diners, NTILE(5) scoring, 41.3% GMV in top 8%', 'SQL / PostgreSQL'],
+        ['Projects', 'Entertainment SQL', 'Digital Music Store Analytics', '11 relational tables, Rock 71.4% sales, USA/CA 38.2% gross', 'SQL / PostgreSQL'],
+        ['Projects', 'Logistics SQL', 'Faasos Roll Delivery & Kitchen Ops', '100% normalized unnesting, 14.8 min avg prep, -12.5% cancels', 'SQL / PostgreSQL'],
+        ['Projects', 'Retail Time Series', 'Walmart Retail Sales Modeling', 'Afternoon/Evening 64.2% rev, Branch C $328 ticket, -18% wait', 'SQL / MySQL'],
+        ['Projects', 'Data Engineering', 'Universal Date Format Regex Parser', '25K+ dates, named capture groups, ISO-8601 YYYY-MM-DD', 'Python / Regex'],
+        ['Projects', 'Network Security', 'IPv4 & IPv6 Telemetry Regex Extractor', '150K+ endpoints, octet bounds, 12,400 spoofed blocked', 'Python / Regex'],
+        ['Projects', 'Web Intelligence', 'URL & Endpoint Extraction Pipeline', '500K docs, 88K+ links, 1,420 obfuscated redirect flags', 'Python / Regex'],
+        ['Projects', 'Compliance ETL', 'Contact & Lead Extraction Regex', '80K CRM tickets, +34% phone yield, 100% PII masked', 'Python / Regex'],
+        ['Projects', 'Socioeconomic EDA', 'Adult Census Income >$50K Predictors', '32,561 records, 4.2x degree odds, 38-52 peak earnings age', 'Python / Pandas'],
+        ['Projects', 'App Ecosystem EDA', 'Google Play Store Ratings & Economics', '10,840 apps, 92.6% free, 20-50MB size sweet-spot', 'Python / Seaborn'],
         ['Technical Skills', 'Languages', 'Querying & Coding', 'Python, SQL (PostgreSQL), R, JavaScript', 'Advanced Levels'],
         ['Technical Skills', 'Software', 'Business Intelligence', 'Power BI, Tableau, Advanced Excel, Git', 'Certifications Mapped'],
         ['Certifications', 'Microsoft Certification', 'PL-300 Exam', 'Microsoft Power BI Data Analyst Associate', 'Active Status'],
@@ -368,6 +377,132 @@ export default function ResumeSection() {
                 </div>
                 <p className="text-xs text-slate-600 font-sans leading-relaxed">
                   Segmented 50,000+ customer profiles via PostgreSQL NTILE(5) RFM scoring. Proved top 8.2% Champions generate 41.3% of platform GMV and established 14-day reactivation doubles 90-day retention.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Digital Music Store Database & Revenue SQL Analysis
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/music-store-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Queried an 11-table relational music database. Utilized CTEs and DENSE_RANK() to identify top-selling genres per country; proved Rock accounted for 71.4% of total track sales and USA/CA drove 38.2% of revenue.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Faasos Cloud Kitchen Delivery Operations & Customization SQL
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/fasos-roll-delivery-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Cleaned messy order logs with STRING_TO_ARRAY and UNNEST. Modeled driver delivery speed and kitchen prep bottlenecks (14.8 min average), showing multi-roll baskets spike cancellation odds by 19.4%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Walmart Retail Sales Performance & Branch Demand SQL Modeling
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/walmart-sales-sql-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Analyzed store sales across time shifts and customer types using MySQL. Discovered Afternoon/Evening shifts drive 64.2% of revenue; Branch C achieved the highest average ticket size ($328).
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Universal Date Normalizer & Format Parser Regex Engine
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/date-converter-regex-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Standardized 12+ international date formats into ISO-8601 YYYY-MM-DD via named regex capture groups and calendar leap-year validation, achieving 99.8% precision across 25,000+ records.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    IPv4 & IPv6 Network Telemetry Extractor Regex Engine
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/ip-extractor-regex-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Engineered octet-bounded regex algorithms parsing &gt;45K log lines/sec. Extracted 150,000+ endpoints from firewall logs and filtered 12,400 malformed/spoofed addresses without false positives.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Web Endpoint & Hyperlink Extraction Regex Pipeline
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/url-extractor-regex-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Extracted 88,000+ validated URLs from 500K web crawl documents with 99.4% precision. Isolated protocol schemes, query params, and flagged 1,420 obfuscated domain redirect patterns.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Multi-Format Contact & Lead Extraction Regex Pipeline
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/contact-extractor-regex-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Extracted E.164 phone numbers and RFC 5322 emails across 80,000 CRM tickets. Boosted phone discovery yield by 34% and automated 100% PII compliance masking before data storage.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Adult Census Income & Socioeconomic Demographic EDA
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Adult-incomes-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Evaluated 32,561 US Census records in Python Pandas. Proved Bachelor degree holders have 4.2x higher odds of &gt;$50K income compared to high-school graduates, with peak earnings between ages 38–52.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Google Play Store App Ecosystem & User Rating EDA
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Google-play-store-EDA-project
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Analyzed 10,840 Play Store apps and review sentiments. Established that 20MB–50MB file sizes yield optimal install conversions, whereas apps exceeding 100MB face an 18% conversion penalty.
                 </p>
               </div>
             </div>
