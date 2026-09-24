@@ -43,7 +43,7 @@ export default function ResumeSection() {
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "Aarav_Mehta_Analyst_Resume_Data.csv");
+      link.setAttribute("download", "Vasu_Vachhani_Analyst_Resume_Data.csv");
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -107,8 +107,8 @@ export default function ResumeSection() {
           {/* Resume Header */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 border-b border-slate-300 pb-6">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight font-sans">
-                Aarav Mehta
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-sans">
+                Vasu Vachhani
               </h3>
               <p className="text-xs sm:text-sm font-bold text-indigo-700 font-mono mt-1 uppercase tracking-wider">
                 Aspiring Data Analyst • Applied Statistics & CS Specialist
@@ -117,7 +117,7 @@ export default function ResumeSection() {
                 <span>📍 San Jose, California</span>
                 <span>📧 vvachhani28@gmail.com</span>
                 <span>📱 (408) 555-0198</span>
-                <span className="print:hidden text-indigo-600">🔗 linkedin.com/in/aarav-mehta-data</span>
+                <span className="print:hidden text-indigo-600">🔗 linkedin.com/in/vasu-vachhani</span>
               </div>
             </div>
 

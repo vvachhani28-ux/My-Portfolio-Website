@@ -32,7 +32,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.05] font-sans">
-              Hi, I'm <span className="text-indigo-650">Aarav Mehta</span>
+              Hi, I'm <span className="text-indigo-650">Vasu Vachhani</span>
               <span className="block mt-3 text-2xl sm:text-3xl text-slate-600 font-medium font-sans tracking-tight">
                 I translate messy data into strategic business decisions.
               </span>
@@ -84,7 +84,7 @@ export default function Hero() {
                   <span className="h-2 w-2 rounded-none bg-amber-500"></span>
                   <span className="h-2 w-2 rounded-none bg-emerald-500"></span>
                 </div>
-                <span className="text-slate-400 font-sans text-[10px] font-bold uppercase tracking-wider">Aarav_Console.py</span>
+                <span className="text-slate-400 font-sans text-[10px] font-bold uppercase tracking-wider">Vasu_Console.py</span>
                 <span className="h-4 w-4 text-slate-500 text-right">#</span>
               </div>
 

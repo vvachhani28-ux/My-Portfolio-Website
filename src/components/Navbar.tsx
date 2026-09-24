@@ -39,7 +39,7 @@ export default function Navbar() {
               <BarChart2 className="h-5 w-5" />
             </div>
             <div>
-              <span className="font-sans font-bold text-slate-900 tracking-tight text-sm block">AARAV MEHTA</span>
+              <span className="font-sans font-bold text-slate-900 tracking-tight text-sm block">VASU VACHHANI</span>
               <span className="font-mono text-[9px] uppercase tracking-widest text-indigo-650 block -mt-1 font-semibold">Data Analyst Portfolio</span>
             </div>
           </a>

@@ -48,14 +48,14 @@ export default function App() {
               <BarChart2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="font-sans font-bold text-white text-sm block">AARAV MEHTA</span>
+              <span className="font-sans font-bold text-white text-sm block">VASU VACHHANI</span>
               <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 block">Applied Statistics & Analytics Specialist</span>
             </div>
           </div>
 
           <div className="text-center md:text-right text-xs space-y-1">
             <p className="font-medium text-slate-300">
-              © 2026 Aarav Mehta. All rights reserved.
+              © 2026 Vasu Vachhani. All rights reserved.
             </p>
             <p className="text-[10px] text-slate-500 font-mono">
               Compiled using React 19 & Tailwind CSS • Handcrafted Interactive Visualizations

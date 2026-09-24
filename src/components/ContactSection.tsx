@@ -156,8 +156,8 @@ export default function ContactSection() {
                   <span>Metadata schema:</span>
                 </div>
                 <div>Status: <span className="text-emerald-700 font-black">Active Recruiting Loop</span></div>
-                <div>GitHub: <a href="#" className="text-indigo-600 hover:underline">github.com/aaravmehta</a></div>
-                <div>LinkedIn: <a href="#" className="text-indigo-600 hover:underline">linkedin.com/in/aarav</a></div>
+                <div>GitHub: <a href="https://github.com/vasuvachhani" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">github.com/vasuvachhani</a></div>
+                <div>LinkedIn: <a href="https://linkedin.com/in/vasu-vachhani" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">linkedin.com/in/vasu-vachhani</a></div>
               </div>
             </div>
           </div>
