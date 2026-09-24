@@ -91,56 +91,56 @@ export default function Hero() {
               {/* Console log content */}
               <div className="p-4 space-y-3.5 select-none min-h-[300px]">
                 <div>
-                  <span className="text-slate-500">[09:21:42]</span> <span className="text-emerald-400">INFO:</span> Initializing pipeline compilation...
+                  <span className="text-slate-500">[09:21:42]</span> <span className="text-emerald-400">INFO:</span> Initializing credit risk & spatial pipeline...
                 </div>
                 <div>
-                  <span className="text-slate-500">[09:21:43]</span> <span className="text-indigo-400">SQL:</span> SELECT cohort_id, COUNT(user_id) FROM users GROUP BY cohort_id;
+                  <span className="text-slate-500">[09:21:43]</span> <span className="text-indigo-400">SQL:</span> SELECT grade, dti, charge_off FROM lending_loans WHERE vintage &gt;= 2020;
                 </div>
                 <div>
-                  <span className="text-slate-500">[09:21:44]</span> <span className="text-amber-400">WARN:</span> Outliers detected in GDP dataset (USA). Fitting robust OLS.
+                  <span className="text-slate-500">[09:21:44]</span> <span className="text-amber-400">DATA:</span> Loaded 887,379 loans + 380 match spatial event coordinates.
                 </div>
                 
                 {/* Visual mini-bar simulation inside python terminal */}
                 <div className="border border-slate-800 rounded-none bg-slate-950 p-3 space-y-2">
                   <div className="flex justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1">
-                    <span>Variable Distribution</span>
-                    <span className="text-indigo-400">Kurtosis: 3.12</span>
+                    <span>Credit Risk AUC by Grade</span>
+                    <span className="text-indigo-400">ROC-AUC: 0.824</span>
                   </div>
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-2">
-                      <span className="w-8 text-[10px] text-slate-500 text-right">Q1:</span>
+                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade A-B:</span>
                       <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-indigo-500" style={{ width: '38%' }}></div>
+                        <div className="h-full bg-emerald-500" style={{ width: '92%' }}></div>
                       </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">38%</span>
+                      <span className="w-8 text-[10px] text-slate-400 text-right">92%</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="w-8 text-[10px] text-slate-500 text-right">Q2:</span>
+                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade C-D:</span>
                       <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-indigo-500" style={{ width: '84%' }}></div>
+                        <div className="h-full bg-amber-500" style={{ width: '74%' }}></div>
                       </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">84%</span>
+                      <span className="w-8 text-[10px] text-slate-400 text-right">74%</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="w-8 text-[10px] text-slate-500 text-right">Q3:</span>
+                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade E-G:</span>
                       <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-indigo-500" style={{ width: '62%' }}></div>
+                        <div className="h-full bg-rose-500" style={{ width: '48%' }}></div>
                       </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">62%</span>
+                      <span className="w-8 text-[10px] text-slate-400 text-right">48%</span>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-slate-500">[09:21:45]</span> <span className="text-emerald-400">SUCCESS:</span> R-Squared improved to <strong className="text-white">0.842</strong>. System active.
+                  <span className="text-slate-500">[09:21:45]</span> <span className="text-emerald-400">SUCCESS:</span> Model calibrated. Portfolio loss reduction: <strong className="text-white">-18.7%</strong>.
                 </div>
               </div>
 
               {/* Terminal status foot */}
               <div className="bg-slate-950/80 px-4 py-2 text-[10px] text-slate-500 border-t border-slate-800 flex justify-between">
                 <span>UTF-8</span>
-                <span>Python 3.11.4</span>
-                <span>Active Model: OLS_Regression</span>
+                <span>Python 3.11</span>
+                <span>Active Model: XGBoost_CreditRisk</span>
               </div>
             </div>
 

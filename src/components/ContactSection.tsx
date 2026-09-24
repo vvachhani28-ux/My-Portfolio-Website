@@ -208,11 +208,11 @@ export default function ContactSection() {
                   onChange={(e) => setFormSubject(e.target.value)}
                   className="w-full rounded-none border border-slate-355 px-3.5 py-2.5 text-xs text-slate-850 bg-white font-sans focus:border-indigo-600 focus:outline-none cursor-pointer"
                 >
-                  <option value="DTC Retention Analysis">DTC Retention Analysis (Case Study #1)</option>
-                  <option value="Climate OLS Model Study">Climate GDP Modeling (Case Study #2)</option>
-                  <option value="Superstore Supply Prediction">Superstore Demand Forecasting (Case Study #3)</option>
-                  <option value="General Recruiting / Interview">Full-Time Hiring Opportunity</option>
-                  <option value="Custom Project / Other">Custom Data Consultation</option>
+                  <option value="Lending Club Default Risk Assessment">Lending Club Default Risk Analysis (Case #1)</option>
+                  <option value="Football Match Spatial & xG Analytics">Football Match & xG Analytics (Case #2)</option>
+                  <option value="Telecom Customer Churn Modeling">Telecom Churn Diagnostic (Case #3)</option>
+                  <option value="Full-Time Hiring Opportunity">Full-Time Hiring Opportunity</option>
+                  <option value="Custom Data Consultation">Custom Data Consultation</option>
                 </select>
               </div>
 

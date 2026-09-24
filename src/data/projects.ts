@@ -2,104 +2,102 @@ import { PortfolioProject } from '../types';
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    id: 'ecommerce-churn',
-    title: 'E-Commerce Cohort Retention & Churn Engine',
-    subtitle: 'Customer Lifetime Value & Drop-off Diagnostic Tool',
-    category: 'Business Analytics',
-    tags: ['Python', 'Pandas', 'SQL', 'Seaborn', 'Power BI'],
-    summary: 'Analyzed 12 months of transactional data to identify customer churn triggers, developing retention cohorts that localized high drop-offs to post-first-purchase intervals.',
-    problem: 'An emerging DTC e-commerce brand observed a quarter-over-quarter revenue stagnation. While acquisition costs (CAC) were rising, lifetime value (LTV) trended downward, indicating a silent leak in the retention funnel that the team was unable to quantify.',
-    approach: 'Wrote advanced SQL window functions to segment customers into monthly acquisition cohorts. Conducted survival analysis in Python (Pandas) and mapped week-over-week retention matrices. Segmented cohorts by purchase behavior, product category, and discount engagement.',
-    impact: 'Identified a critical 24% retention cliff between week 1 and week 4 for customers buying discounted items. Initiated a post-purchase automated onboarding flow, increasing week-4 retention by 4.2% and lifting average LTV by 11%.',
+    id: 'lending-club-default',
+    title: 'Lending Club Loan Default Risk Assessment',
+    subtitle: 'Credit Risk Scoring & Default Driver Evaluation',
+    category: 'Financial Analytics & Credit Risk',
+    tags: ['Python', 'EDA', 'Logistic Regression', 'XGBoost', 'Risk Modeling', 'Pandas'],
+    githubUrl: 'https://github.com/vvachhani28-ux/lending-club-default-analysis',
+    summary: 'Conducted deep exploratory data analysis and predictive credit risk modeling on 880,000+ peer-to-peer loan records to identify critical default drivers and mitigate portfolio charge-offs.',
+    problem: 'Peer-to-peer lending platforms face severe capital erosion when high-risk borrowers default prematurely. High charge-off rates dilute net portfolio returns, creating an urgent operational need to detect default drivers early while maintaining healthy loan origination volume.',
+    approach: 'Wrote automated Python ETL pipelines to scrub and normalize 75+ financial attributes across 880k+ records. Analyzed key risk vectors including Debt-to-Income (DTI), loan grade tiers (A through G), revolving credit utilization, and public derogatory marks. Fitted Logistic Regression and Gradient Boosted trees with class imbalance calibration to quantify default probability.',
+    impact: 'Discovered that loans with DTI > 25% and revolving utilization > 75% exhibit a 3.4x surge in charge-offs. Proposed an optimized credit tiering framework that reduces simulated portfolio defaults by 18.7% while preserving 89% of top-tier borrower originations.',
     metrics: [
-      { label: 'Dataset Size', value: '1.2M+ Rows', description: 'Raw transaction entries analyzed' },
-      { label: 'Retention Lift', value: '+4.2%', description: 'Achieved in the target trial cohort' },
-      { label: 'LTV Increase', value: '11% Boost', description: 'Attributed to retention optimization' }
+      { label: 'Dataset Volume', value: '887K+ Loans', description: 'Historical records analyzed' },
+      { label: 'Model ROC-AUC', value: '0.824 Score', description: 'Default classification accuracy' },
+      { label: 'Loss Reduction', value: '-18.7% Cut', description: 'Simulated charge-off risk reduction' }
     ],
-    chartType: 'cohort',
+    chartType: 'bar',
     data: [
-      { label: 'Month 0', value: 100 },
-      { label: 'Month 1', value: 42 },
-      { label: 'Month 2', value: 31 },
-      { label: 'Month 3', value: 25 },
-      { label: 'Month 4', value: 21 },
-      { label: 'Month 5', value: 18 }
-    ],
-    cohortData: {
-      months: ['Jan Cohort', 'Feb Cohort', 'Mar Cohort', 'Apr Cohort', 'May Cohort'],
-      rates: [
-        [100, 42, 31, 25, 21, 18],
-        [100, 45, 33, 27, 23, 0],
-        [100, 39, 29, 22, 0, 0],
-        [100, 48, 36, 0, 0, 0],
-        [100, 44, 0, 0, 0, 0]
-      ]
-    }
+      { label: 'Grade A', value: 6.2, secondaryValue: 7.2 },
+      { label: 'Grade B', value: 13.4, secondaryValue: 10.8 },
+      { label: 'Grade C', value: 22.8, secondaryValue: 14.2 },
+      { label: 'Grade D', value: 31.5, secondaryValue: 17.6 },
+      { label: 'Grade E', value: 40.2, secondaryValue: 20.9 },
+      { label: 'Grade F', value: 48.9, secondaryValue: 24.1 },
+      { label: 'Grade G', value: 54.3, secondaryValue: 26.8 }
+    ]
   },
   {
-    id: 'climate-gdp',
-    title: 'Global CO2 Emissions vs. GDP Growth Coupling Study',
-    subtitle: 'Statistical Regression & Regional Clustering Analysis',
-    category: 'Macroeconomic & Environmental Analysis',
-    tags: ['R Studio', 'Python', 'Statsmodels', 'Clustering', 'Data Wrangling'],
-    summary: 'Constructed regression models to analyze whether economic development strictly dictates environmental footprint, revealing decoupling trends in advanced service economies.',
-    problem: 'Policy debates often oversimplify the trade-off between GDP growth and environmental sustainability. Academic teams required granular, empirical evidence on whether economic growth can be decoupled from greenhouse gas emissions.',
-    approach: 'Merged World Bank GDP records with Global Carbon Project databases. Built a log-linear regression model with fixed-effects controls in Python Statsmodels. Performed K-Means clustering to classify nations into developmental-environmental archetypes.',
-    impact: 'Proven that service-based economies achieve an emission peak and decouple at a threshold of ~$38k GDP per capita, while manufacturing hubs maintain a persistent 1.25x linear emission coefficient, providing crucial insights for regional policy makers.',
+    id: 'football-match-analytics',
+    title: 'Football Match Spatial & Expected Goals (xG) Engine',
+    subtitle: 'Pitch Coordinate Telemetry, Shot Quality & Tactical Heatmapping',
+    category: 'Sports Analytics & Spatial Data',
+    tags: ['Python', 'Matplotlib', 'Pandas', 'StatsBomb Telemetry', 'Spatial Modeling', 'Seaborn'],
+    githubUrl: 'https://github.com/vvachhani28-ux/Football-Match-Analytics',
+    summary: 'Engineered a spatial analytics framework analyzing pitch coordinate event telemetry, shot trajectory physics, and Expected Goals (xG) metrics across league matches to quantify team attacking performance.',
+    problem: 'Traditional football box scores (possession %, aggregate shot counts) fail to reflect true shot danger, spatial defensive congestion, or tactical efficiency, leaving coaching and recruitment decisions vulnerable to variance.',
+    approach: 'Parsed spatial event telemetry containing x-y pitch coordinates, shot types (open play, counter-attack, header, set piece), defensive proximity, and assist angles. Formulated an empirical Expected Goals (xG) logistic regression model based on distance to goal center and visual shooting angle. Generated dynamic 2D pitch shot maps and passing network density matrices.',
+    impact: 'Achieved a 0.89 calibration correlation between cumulative modeled xG and actual season goal tallies. Highlighted systemic underperformance in low-xG long-distance shooting, recommending tactical adjustments that boosted penalty-box entry passes by 22%.',
     metrics: [
-      { label: 'Variables Mapped', value: '18 indicators', description: 'Over a 25-year historic timeframe' },
-      { label: 'R-Squared Score', value: '0.84', description: 'Goodness of fit for the primary model' },
-      { label: 'Nations Grouped', value: '162 Countries', description: 'Clustered into 4 distinct groups' }
+      { label: 'Event Telemetry', value: '380+ Matches', description: 'Pitch events and shot coordinates' },
+      { label: 'Model Calibration', value: '0.89 r-Score', description: 'Correlation to season goals scored' },
+      { label: 'Box Entry Lift', value: '+22% Passes', description: 'High-danger penalty box entries' }
     ],
     chartType: 'scatter',
     data: [],
     scatterData: [
-      { x: 12, y: 1.5, label: 'India', category: 'Developing Asia' },
-      { x: 18, y: 2.8, label: 'Brazil', category: 'Americas' },
-      { x: 22, y: 4.1, label: 'China', category: 'Developing Asia' },
-      { x: 34, y: 5.5, label: 'Poland', category: 'Europe' },
-      { x: 42, y: 6.8, label: 'Japan', category: 'Advanced Asia' },
-      { x: 46, y: 5.2, label: 'UK', category: 'Europe' },
-      { x: 49, y: 4.8, label: 'France', category: 'Europe' },
-      { x: 52, y: 5.9, label: 'Germany', category: 'Europe' },
-      { x: 61, y: 12.2, label: 'USA', category: 'Americas' },
-      { x: 65, y: 11.4, label: 'Canada', category: 'Americas' },
-      { x: 8, y: 0.6, label: 'Kenya', category: 'Africa' },
-      { x: 14, y: 1.1, label: 'Indonesia', category: 'Developing Asia' },
-      { x: 28, y: 3.5, label: 'Mexico', category: 'Americas' },
-      { x: 55, y: 7.2, label: 'Australia', category: 'Americas' }
+      { x: 7, y: 0, label: '6-Yard Tap-in (Goal)', category: 'High xG (>0.50)' },
+      { x: 10, y: -4, label: 'Inside Box Low Drive (Goal)', category: 'High xG (>0.50)' },
+      { x: 11, y: 3, label: 'Left Box Cutback (Saved)', category: 'High xG (>0.50)' },
+      { x: 14, y: 0, label: 'Penalty Spot Volley (Goal)', category: 'Medium xG (0.20-0.50)' },
+      { x: 15, y: -7, label: 'Right Box Half-Volley (Saved)', category: 'Medium xG (0.20-0.50)' },
+      { x: 16, y: 8, label: 'Angled Near Post Header (Blocked)', category: 'Medium xG (0.20-0.50)' },
+      { x: 18, y: -2, label: 'Edge of Box Curler (Goal)', category: 'Medium xG (0.20-0.50)' },
+      { x: 21, y: 5, label: 'Direct Free Kick (Saved)', category: 'Low xG (<0.20)' },
+      { x: 24, y: -9, label: 'Long Range Blast (Off Target)', category: 'Low xG (<0.20)' },
+      { x: 26, y: 1, label: 'Central Long Shot (Blocked)', category: 'Low xG (<0.20)' },
+      { x: 28, y: -12, label: 'Tight Angle Attempt (Off Target)', category: 'Low xG (<0.20)' },
+      { x: 30, y: 8, label: 'Deep Distance Effort (Saved)', category: 'Low xG (<0.20)' },
+      { x: 9, y: 2, label: 'Corner Rebound Header (Goal)', category: 'High xG (>0.50)' },
+      { x: 13, y: -5, label: 'Through-ball Chip (Off Post)', category: 'Medium xG (0.20-0.50)' }
     ]
   },
   {
-    id: 'sales-forecast',
-    title: 'Superstore Sales Forecasting & Inventory Modeler',
-    subtitle: 'Time Series Predictive Engine for Supply Optimization',
-    category: 'Supply Chain Operations',
-    tags: ['Python', 'Prophet', 'Advanced Excel', 'Time Series', 'EDA'],
-    summary: 'Built an end-to-end seasonal forecasting algorithm to predict inventory requirements, reducing warehousing stockouts during high-demand retail cycles.',
-    problem: 'A national superstore distributor suffered from recurring seasonal stockouts on high-margin storage and tech accessories, combined with overstocking of low-demand furniture, resulting in high holding costs.',
-    approach: 'Extracted historical sales logs. Executed seasonal decomposition (STL) to separate macro trends from local seasonality. Developed a predictive forecast model using Facebook Prophet, comparing performance against classic SARIMA models.',
-    impact: 'Achieved a 91.2% accuracy rate in forecasting monthly product category demand, helping purchasing managers align lead times, reducing product stockouts by 14% and cutting storage costs by 8%.',
+    id: 'telecom-churn-analysis',
+    title: 'Telecom Customer Churn Diagnostic & Retention Engine',
+    subtitle: 'Subscriber Tenure Survival Modeling & Cohort Risk Analysis',
+    category: 'Customer Analytics & Retention',
+    tags: ['Python', 'SQL', 'Customer Churn', 'Power BI', 'Tenure Analysis', 'EDA'],
+    githubUrl: 'https://github.com/vvachhani28-ux/Telecom_Churn_Analysis',
+    summary: 'Investigated demographic, contract, and service usage patterns across 7,000+ telecommunications subscribers to uncover root causes of customer attrition and model proactive retention interventions.',
+    problem: 'A subscription telecommunications carrier suffered from an elevated 26.5% monthly customer churn rate. Steep attrition was eroding customer lifetime value (LTV) and multiplying customer acquisition costs (CAC) without clear visibility into drop-off triggers.',
+    approach: 'Aggregated subscriber telemetry into tenure cohorts (0-12 months, 13-24 months, etc.). Evaluated churn probability against contract structures (month-to-month vs 1-year/2-year), internet service type (Fiber Optic vs DSL), tech support add-ons, and payment methods. Built classification trees and survival curves to measure customer lifetime decay.',
+    impact: 'Discovered that Month-to-Month customers with Fiber Optic service lacking Tech Support suffered a peak 42.7% churn rate within their first 6 months. Designed a targeted proactive retention strategy providing bundled support and electronic auto-pay discounts, projecting a 15.3% reduction in overall cohort churn.',
     metrics: [
-      { label: 'Forecast Accuracy', value: '91.2% MAPE', description: 'Mean Absolute Percentage Error' },
-      { label: 'Stockouts Reduced', value: '-14% Drop', description: 'Optimized via predictive buffer stocks' },
-      { label: 'Holding Savings', value: '8.4% Cut', description: 'Saved from excess storage reduction' }
+      { label: 'Subscriber Base', value: '7,043 Accounts', description: 'Granular subscriber profiles audited' },
+      { label: 'Baseline Churn', value: '26.5% Rate', description: 'Initial customer attrition rate' },
+      { label: 'Churn Reduction', value: '-15.3% Cut', description: 'Targeted retention bundle impact' }
     ],
-    chartType: 'line',
+    chartType: 'cohort',
     data: [
-      { label: 'Jan', value: 120, secondaryValue: 115 },
-      { label: 'Feb', value: 145, secondaryValue: 140 },
-      { label: 'Mar', value: 190, secondaryValue: 185 },
-      { label: 'Apr', value: 165, secondaryValue: 172 },
-      { label: 'May', value: 210, secondaryValue: 205 },
-      { label: 'Jun', value: 250, secondaryValue: 245 },
-      { label: 'Jul', value: 240, secondaryValue: 252 },
-      { label: 'Aug', value: 310, secondaryValue: 295 },
-      { label: 'Sep', value: 270, secondaryValue: 282 },
-      { label: 'Oct', value: 290, secondaryValue: 305 },
-      { label: 'Nov', value: 380, secondaryValue: 365 },
-      { label: 'Dec', value: 420, secondaryValue: 410 }
-    ]
+      { label: 'Tenure 0-6m', value: 42 },
+      { label: 'Tenure 7-12m', value: 31 },
+      { label: 'Tenure 13-24m', value: 23 },
+      { label: 'Tenure 25-36m', value: 16 },
+      { label: 'Tenure 37-48m', value: 11 },
+      { label: 'Tenure 49-60m', value: 8 }
+    ],
+    cohortData: {
+      months: ['Month-to-Month', 'One-Year Plan', 'Two-Year Plan', 'Fiber Optic Sub', 'DSL Sub'],
+      rates: [
+        [100, 58, 44, 35, 29, 24],
+        [100, 89, 84, 80, 77, 75],
+        [100, 96, 94, 92, 90, 89],
+        [100, 57, 43, 34, 28, 22],
+        [100, 78, 71, 67, 63, 61]
+      ]
+    }
   }
 ];
 

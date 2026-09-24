@@ -30,11 +30,13 @@ export default function ResumeSection() {
         ['Education', 'Academic Standing', 'Tech National University', 'Dean\'s Honor List', 'Cumulative GPA: 3.82/4.00'],
         ['Experience', 'Academic Position', 'Tech National University', 'Undergraduate TA - Business Analytics', 'Sep 2024 - Present'],
         ['Experience', 'Industry Internship', 'Quantico Capital Management', 'Data Analyst Intern', 'Jun 2024 - Aug 2024'],
+        ['Projects', 'Credit Risk Modeling', 'Lending Club Default Analysis', '887K+ loans, 0.824 ROC-AUC, -18.7% loss reduction', 'Python / XGBoost'],
+        ['Projects', 'Spatial Sports Analytics', 'Football Match Analytics', '380+ matches, 0.89 xG correlation, +22% box entries', 'Python / StatsBomb'],
+        ['Projects', 'Customer Retention', 'Telecom Churn Analysis', '7,043 accounts, 26.5% baseline, -15.3% churn cut', 'Python / Power BI'],
         ['Technical Skills', 'Languages', 'Querying & Coding', 'Python, SQL (PostgreSQL), R, JavaScript', 'Advanced Levels'],
         ['Technical Skills', 'Software', 'Business Intelligence', 'Power BI, Tableau, Advanced Excel, Git', 'Certifications Mapped'],
         ['Certifications', 'Microsoft Certification', 'PL-300 Exam', 'Microsoft Power BI Data Analyst Associate', 'Active Status'],
-        ['Certifications', 'Tableau Credentials', 'Desktop Specialist', 'Tableau Desktop Specialist License', 'Active Status'],
-        ['Academic Honors', 'National Competitions', 'Data-Hackathon 2025', '1st Place Winner - Predictive Modeling', '2025']
+        ['Certifications', 'Tableau Credentials', 'Desktop Specialist', 'Tableau Desktop Specialist License', 'Active Status']
       ];
 
       const csvContent = "data:text/csv;charset=utf-8," 
@@ -197,6 +199,57 @@ export default function ResumeSection() {
                   </ul>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Featured Analytical Projects in Resume */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-700 font-mono flex items-center gap-1.5 border-b border-slate-200 pb-1.5">
+              <FileSpreadsheet className="h-4 w-4" />
+              <span>Key Analytical Projects (GitHub)</span>
+            </h4>
+            <div className="space-y-3">
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Lending Club Loan Default Risk Assessment
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/lending-club-default-analysis
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Evaluated 887k+ loans using Python, Logistic Regression & XGBoost. Modeled DTI and credit grade default patterns, attaining 0.824 ROC-AUC and demonstrating simulated portfolio loss reduction of 18.7%.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Football Match Spatial & Expected Goals (xG) Engine
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Football-Match-Analytics
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Analyzed 380+ league matches with coordinate telemetry. Built shot quality logistic models achieving 0.89 correlation with season scoring, identifying a +22% improvement in box penetration via cutbacks.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                  <h5 className="text-sm font-bold text-slate-900 font-sans">
+                    Telecom Customer Churn Diagnostic & Retention Engine
+                  </h5>
+                  <span className="text-[11px] font-mono text-indigo-650 font-bold">
+                    github.com/vvachhani28-ux/Telecom_Churn_Analysis
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                  Diagnosed churn triggers across 7,043 subscriber profiles. Uncovered Month-to-Month survival drop-offs and structured retention intervention bundles cutting modeled churn by 15.3%.
+                </p>
+              </div>
             </div>
           </div>
 

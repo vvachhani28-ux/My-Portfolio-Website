@@ -21,6 +21,7 @@ export interface PortfolioProject {
   approach: string;
   impact: string;
   tags: string[];
+  githubUrl: string;
   metrics: {
     label: string;
     value: string;

@@ -130,8 +130,19 @@ export default function ProjectsSection() {
                     ))}
                   </div>
 
-                  {/* Mini action back link to console */}
-                  <div className="pt-4 border-t border-slate-200">
+                  {/* GitHub Repo Button & Sandbox Link */}
+                  <div className="pt-4 border-t border-slate-200 space-y-2.5">
+                    <a
+                      id={`project-github-${proj.id}`}
+                      href={proj.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-none bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all border border-slate-900 cursor-pointer"
+                    >
+                      <ArrowUpRight className="h-3.5 w-3.5 text-indigo-400" />
+                      <span>View GitHub Repository</span>
+                    </a>
+
                     <a
                       id={`project-card-sandbox-${proj.id}`}
                       href="#sandbox"
@@ -145,10 +156,10 @@ export default function ProjectsSection() {
                           if (navButton) (navButton as HTMLButtonElement).click();
                         }
                       }}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 group"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-none bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs uppercase tracking-wider border border-slate-250 transition-all cursor-pointer"
                     >
-                      <span>Explore this dataset in Live Console</span>
-                      <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      <span>Simulate in Playground</span>
+                      <ChevronRight className="h-3.5 w-3.5 text-indigo-600" />
                     </a>
                   </div>
 
