@@ -3549,27 +3549,24 @@ ORDER BY gross_sales_amount DESC;`;
   };
 
   return (
-    <section id="sandbox" className="py-20 bg-white border-b border-slate-200 scroll-mt-12">
+    <section id="sandbox" className="py-24 bg-slate-50/60 border-y border-slate-200/60 scroll-mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Interactive Terminal</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-sans">
-            Live Interactive Analytics Playground
+        <div className="mb-12">
+          <span className="label">Live Console</span>
+          <h2 className="title-serif text-3xl sm:text-4xl md:text-5xl">
+            Live Data <span className="italic">Sandbox</span>
           </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed">
-            As a data analyst, static slides don't do complex datasets justice. Interact with simulated pipeline outputs and diagnostic models from my twenty-five GitHub showcase repositories below.
+          <p className="mt-4 text-base sm:text-lg text-slate-650 max-w-3xl leading-relaxed">
+            As a data analyst, static slides don't do complex datasets justice. Test real queries, run diagnostic simulations, and explore model parameters across all twenty-five GitHub repositories below.
           </p>
         </div>
 
         {/* Grid Dashboard */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Nav rail */}
-          <div className="lg:col-span-4 space-y-2.5 max-h-[820px] overflow-y-auto pr-1">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block px-1">
+          <div className="lg:col-span-4 space-y-3 max-h-[820px] overflow-y-auto pr-2">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400 block px-1">
               Select Showcase Case Study ({portfolioProjects.length}):
             </span>
             
@@ -3580,30 +3577,30 @@ ORDER BY gross_sales_amount DESC;`;
                   id={`proj-nav-${proj.id}`}
                   key={proj.id}
                   onClick={() => handleProjectSelect(proj)}
-                  className={`w-full text-left p-3.5 rounded-none border transition-all duration-150 relative overflow-hidden group cursor-pointer ${
+                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 relative overflow-hidden group cursor-pointer ${
                     isActive 
-                      ? 'bg-slate-50 border-slate-900 border-l-4 border-l-indigo-650 shadow-none' 
-                      : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                      ? 'bg-white border-black shadow-md ring-1 ring-black' 
+                      : 'bg-white/80 border-slate-200/80 hover:border-slate-300 hover:bg-white hover:shadow-xs'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-650 font-mono truncate max-w-[200px]">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 font-mono truncate max-w-[200px]">
                       {proj.category}
                     </span>
                     <ChevronRight className={`h-4 w-4 shrink-0 transition-transform ${
-                      isActive ? 'text-indigo-600 translate-x-0.5' : 'text-slate-300 group-hover:text-slate-400'
+                      isActive ? 'text-black translate-x-0.5' : 'text-slate-300 group-hover:text-slate-500'
                     }`} />
                   </div>
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 mt-1 leading-snug">
+                  <h3 className="text-sm font-bold text-slate-900 mt-1 leading-snug">
                     {proj.title}
                   </h3>
-                  <p className="text-[11px] text-slate-550 mt-1 line-clamp-2 leading-relaxed font-sans">
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
                     {proj.summary}
                   </p>
 
                   <div className="flex flex-wrap gap-1 mt-2.5">
                     {proj.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 bg-slate-100 text-slate-600 border border-slate-200 rounded-none">
+                      <span key={tag} className="text-[10px] font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">
                         {tag}
                       </span>
                     ))}
@@ -3614,14 +3611,14 @@ ORDER BY gross_sales_amount DESC;`;
           </div>
 
           {/* Visualization Console */}
-          <div className="lg:col-span-8 bg-white border border-slate-200 rounded-none p-5 sm:p-6 shadow-none">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5 mb-5">
+          <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 pb-5 mb-6">
               <div>
-                <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <BarChart className="h-5 w-5 text-indigo-600" />
+                <h3 className="title-serif text-2xl text-slate-900 flex items-center gap-2">
+                  <BarChart className="h-5 w-5 text-black" />
                   {activeProject.title}
                 </h3>
-                <p className="text-xs text-slate-550 mt-1 font-mono uppercase tracking-wider">
+                <p className="text-xs text-slate-500 mt-1 font-mono uppercase tracking-wider">
                   Diagnostics Matrix: {activeProject.subtitle}
                 </p>
               </div>
@@ -3633,9 +3630,9 @@ ORDER BY gross_sales_amount DESC;`;
                   href={activeProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-none font-sans transition-colors cursor-pointer"
+                  className="btn-pill btn-pill-secondary text-xs py-2 px-4 flex items-center gap-1.5"
                 >
-                  <ExternalLink className="h-3 w-3 text-indigo-600" />
+                  <ExternalLink className="h-3.5 w-3.5" />
                   <span>GitHub Repo</span>
                 </a>
                 <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-none font-mono">

@@ -1,176 +1,158 @@
-import { ArrowRight, Terminal, BarChart2, Award, BookOpen, Layers } from 'lucide-react';
-import { motion } from 'motion/react';
+import { MouseEvent } from 'react';
+import { ArrowUpRight, Github, Linkedin, Mail, Sparkles, Database, BarChart3, Terminal } from 'lucide-react';
 
 export default function Hero() {
-  const handleScroll = (href: string) => {
+  const handleScroll = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     const targetElement = document.querySelector(href);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const stats = [
-    { label: 'Academic GPA', value: '3.82 / 4.0', icon: BookOpen, color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-    { label: 'Data Cleaned', value: '5.4M+ Rows', icon: Layers, color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-    { label: 'Query Experience', value: '2,500+ Runs', icon: Terminal, color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-    { label: 'Professional Certs', value: '4 Active', icon: Award, color: 'text-amber-600 bg-amber-50 border-amber-100' },
-  ];
-
   return (
-    <section id="overview" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-b border-slate-200 scroll-mt-16">
-      {/* Background structural lines instead of circles */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-40"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Column 1: Intro */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-bold uppercase tracking-wider">
-              <span className="h-1.5 w-1.5 rounded-none bg-indigo-600 animate-pulse"></span>
-              <span>Available for Fall 2026 Associate Roles & Internships</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.05] font-sans">
-              Hi, I'm <span className="text-indigo-650">Vasu Vachhani</span>
-              <span className="block mt-3 text-2xl sm:text-3xl text-slate-600 font-medium font-sans tracking-tight">
-                I translate messy data into strategic business decisions.
-              </span>
+    <section id="hero" className="relative min-h-[90vh] flex items-center py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        {/* Left Column: Hero Text */}
+        <div className="lg:col-span-7 space-y-8">
+          <div>
+            <span className="label">I'm Vasu Vachhani</span>
+            <h1 className="title-serif large font-normal text-slate-900 tracking-tight">
+              Data Analyst &amp; <span className="italic">Applied Statistician</span>
             </h1>
-
-            <p className="text-base sm:text-lg text-slate-650 leading-relaxed max-w-2xl font-sans">
-              I am a final-year Applied Statistics & Computer Science honors student specializing in transforming complex transactional, environmental, and behavioral log files into interactive, actionable business models.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 pt-2">
-              <button
-                id="hero-view-dashboard-btn"
-                onClick={() => handleScroll('#sandbox')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-none bg-slate-900 hover:bg-indigo-600 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
-              >
-                <span>Launch Interactive Console</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <button
-                id="hero-contact-btn"
-                onClick={() => handleScroll('#contact')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-none bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
-              >
-                <span>Inquire / Contact</span>
-              </button>
-            </div>
-
-            {/* Quick Badges */}
-            <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Core Toolkit:</span>
-              {['Python (Pandas)', 'SQL (PostgreSQL)', 'Power BI', 'Tableau', 'Advanced Excel'].map(tech => (
-                <span key={tech} className="text-xs font-mono font-semibold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-none">
-                  {tech}
-                </span>
-              ))}
-            </div>
           </div>
 
-          {/* Column 2: Dashboard Visual Representation */}
-          <div className="lg:col-span-5 relative">
-            
-            {/* Visual console frame */}
-            <div className="bg-slate-900 rounded-none shadow-none border border-slate-800 overflow-hidden relative font-mono text-[11px] leading-relaxed text-slate-300">
-              {/* Terminal header */}
-              <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-none bg-rose-500"></span>
-                  <span className="h-2 w-2 rounded-none bg-amber-500"></span>
-                  <span className="h-2 w-2 rounded-none bg-emerald-500"></span>
-                </div>
-                <span className="text-slate-400 font-sans text-[10px] font-bold uppercase tracking-wider">Vasu_Console.py</span>
-                <span className="h-4 w-4 text-slate-500 text-right">#</span>
-              </div>
+          <p className="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl">
+            Specializing in modern data analytics, relational SQL warehousing, and predictive business intelligence. Building scalable analytical pipelines and diagnostic reporting suites.
+          </p>
 
-              {/* Console log content */}
-              <div className="p-4 space-y-3.5 select-none min-h-[300px]">
-                <div>
-                  <span className="text-slate-500">[09:21:42]</span> <span className="text-emerald-400">INFO:</span> Initializing credit risk & spatial pipeline...
-                </div>
-                <div>
-                  <span className="text-slate-500">[09:21:43]</span> <span className="text-indigo-400">SQL:</span> SELECT grade, dti, charge_off FROM lending_loans WHERE vintage &gt;= 2020;
-                </div>
-                <div>
-                  <span className="text-slate-500">[09:21:44]</span> <span className="text-amber-400">DATA:</span> Loaded 887,379 loans + 380 match spatial event coordinates.
-                </div>
-                
-                {/* Visual mini-bar simulation inside python terminal */}
-                <div className="border border-slate-800 rounded-none bg-slate-950 p-3 space-y-2">
-                  <div className="flex justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1">
-                    <span>Credit Risk AUC by Grade</span>
-                    <span className="text-indigo-400">ROC-AUC: 0.824</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade A-B:</span>
-                      <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-emerald-500" style={{ width: '92%' }}></div>
-                      </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">92%</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade C-D:</span>
-                      <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-amber-500" style={{ width: '74%' }}></div>
-                      </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">74%</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-12 text-[10px] text-slate-500 text-right">Grade E-G:</span>
-                      <div className="flex-1 h-2 bg-slate-900 rounded-none overflow-hidden flex">
-                        <div className="h-full bg-rose-500" style={{ width: '48%' }}></div>
-                      </div>
-                      <span className="w-8 text-[10px] text-slate-400 text-right">48%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <span className="text-slate-500">[09:21:45]</span> <span className="text-emerald-400">SUCCESS:</span> Model calibrated. Portfolio loss reduction: <strong className="text-white">-18.7%</strong>.
-                </div>
-              </div>
-
-              {/* Terminal status foot */}
-              <div className="bg-slate-950/80 px-4 py-2 text-[10px] text-slate-500 border-t border-slate-800 flex justify-between">
-                <span>UTF-8</span>
-                <span>Python 3.11</span>
-                <span>Active Model: XGBoost_CreditRisk</span>
-              </div>
-            </div>
-
-            {/* Decorative background outline box instead of soft shadows */}
-            <div className="absolute -inset-3 border border-indigo-650/25 pointer-events-none -z-10"></div>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              id="hero-view-work-btn"
+              href="#work"
+              onClick={(e) => handleScroll(e, '#work')}
+              className="btn-pill btn-pill-primary"
+            >
+              <span>View Projects</span>
+            </a>
+            <a
+              id="hero-download-resume-btn"
+              href="#resume"
+              onClick={(e) => handleScroll(e, '#resume')}
+              className="btn-pill btn-pill-secondary flex items-center gap-1.5"
+            >
+              <span>View &amp; Download Resume</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
 
+          {/* Social Links Row */}
+          <div className="flex items-center gap-5 pt-4">
+            <a
+              href="https://github.com/vvachhani28-ux"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-black hover:text-white text-slate-700 transition-all shadow-xs"
+              aria-label="GitHub Profile"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vvachhani28"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-black hover:text-white text-slate-700 transition-all shadow-xs"
+              aria-label="LinkedIn Profile"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:vvachhani28@gmail.com"
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-black hover:text-white text-slate-700 transition-all shadow-xs"
+              aria-label="Send Email"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+            <span className="text-xs text-slate-400 font-medium pl-2">
+              vvachhani28@gmail.com
+            </span>
+          </div>
         </div>
 
-        {/* Stats Grid bottom row */}
-        <div className="mt-16 sm:mt-20 border-t border-slate-200 pt-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {stats.map((stat) => {
-              const IconComp = stat.icon;
-              return (
-                <div key={stat.label} className="flex items-start gap-3.5 bg-white p-4 border border-slate-200 rounded-none shadow-xs">
-                  <div className={`p-2.5 rounded-none border border-slate-200 bg-slate-50 text-indigo-600 flex-shrink-0`}>
-                    <IconComp className="h-4 w-4" />
+        {/* Right Column: Hero Visual Frame */}
+        <div className="lg:col-span-5 relative">
+          <div className="relative mx-auto max-w-md bg-white rounded-[40px] p-6 sm:p-8 border border-slate-200/80 shadow-2xl transition-transform hover:-translate-y-2 duration-500">
+            
+            {/* Header tag */}
+            <div className="flex justify-between items-center pb-6 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white font-script text-2xl">
+                  V
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 leading-tight">Vasu Vachhani</h4>
+                  <span className="text-[11px] text-slate-500">Applied Statistics Honors</span>
+                </div>
+              </div>
+              <div className="status-pill text-[10px] py-1 px-3">
+                <span className="dot" />
+                <span>Open for roles</span>
+              </div>
+            </div>
+
+            {/* Core metrics visual preview */}
+            <div className="my-6 space-y-4">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-white shadow-xs text-black">
+                    <Database className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      {stat.label}
-                    </span>
-                    <span className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5 block font-mono">
-                      {stat.value}
-                    </span>
+                    <span className="text-[11px] text-slate-500 font-medium block">Data Processed</span>
+                    <span className="text-sm font-bold text-slate-900">5.4M+ Rows Cleansed</span>
                   </div>
                 </div>
-              );
-            })}
+                <span className="text-xs font-mono text-emerald-600 font-semibold">+18.7% Lift</span>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-white shadow-xs text-black">
+                    <BarChart3 className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-slate-500 font-medium block">Showcase Repositories</span>
+                    <span className="text-sm font-bold text-slate-900">25 Public Case Studies</span>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-slate-500 font-medium">100% Verified</span>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-white shadow-xs text-black">
+                    <Terminal className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-slate-500 font-medium block">Relational Queries</span>
+                    <span className="text-sm font-bold text-slate-900">PostgreSQL / MySQL CTEs</span>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-indigo-600 font-medium">&lt; 0.4s exec</span>
+              </div>
+            </div>
+
+            {/* Footer summary bar */}
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+                Data Modeling &amp; BI
+              </span>
+              <span className="font-mono text-[11px]">Fall 2026 Ready</span>
+            </div>
+
           </div>
         </div>
 

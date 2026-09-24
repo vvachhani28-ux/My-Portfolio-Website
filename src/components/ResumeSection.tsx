@@ -76,20 +76,17 @@ export default function ResumeSection() {
   };
 
   return (
-    <section id="resume" className="py-20 bg-white border-t border-slate-200 scroll-mt-12 print:py-0 print:bg-white print:text-black">
+    <section id="resume" className="py-24 bg-white border-t border-slate-100 scroll-mt-12 print:py-0 print:bg-white print:text-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 print:px-0">
         
         {/* Header - Hidden in Print */}
-        <div className="text-center max-w-3xl mx-auto print:hidden">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-3">
-            <FileSpreadsheet className="h-3.5 w-3.5 text-indigo-650" />
-            <span>Structured CV & Transcripts</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-sans">
-            Interactive Resume Console
+        <div className="text-center max-w-3xl mx-auto print:hidden mb-12">
+          <span className="label">Structured Resume</span>
+          <h2 className="title-serif text-3xl sm:text-4xl md:text-5xl">
+            Professional Qualifications &amp; <span className="italic">Credentials</span>
           </h2>
-          <p className="mt-4 text-base text-slate-650 leading-relaxed font-sans">
-            Review my professional qualifications below. You can download my structured credentials as an analyst-friendly CSV dataset or trigger the clean PDF print layout.
+          <p className="mt-4 text-base sm:text-lg text-slate-650 leading-relaxed">
+            Review my academic honors, technical certifications, and comprehensive project history below. Download my structured credentials as an analyst-friendly CSV dataset or save the print-ready PDF layout.
           </p>
 
           {/* Download Action Buttons */}
@@ -97,36 +94,36 @@ export default function ResumeSection() {
             <button
               id="print-resume-btn"
               onClick={handlePrint}
-              className="inline-flex items-center gap-2 px-4.5 py-3 rounded-none bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-none cursor-pointer border border-slate-900"
+              className="btn-pill btn-pill-primary flex items-center gap-2 text-sm shadow-md"
             >
               <Printer className="h-4 w-4" />
-              <span>Print Resume / Save PDF</span>
+              <span>Print / Save PDF</span>
             </button>
 
             <button
               id="download-csv-resume-btn"
               onClick={handleCSVDownload}
-              className="inline-flex items-center gap-2 px-4.5 py-3 rounded-none bg-white hover:bg-slate-50 border border-slate-350 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all shadow-none cursor-pointer"
+              className="btn-pill btn-pill-secondary flex items-center gap-2 text-sm"
               disabled={downloadingFormat !== null}
             >
-              <Download className="h-4 w-4 text-emerald-650" />
+              <Download className="h-4 w-4 text-black" />
               <span>
-                {downloadingFormat === 'CSV' ? 'Exporting Dataset...' : 'Download structured CV (.csv)'}
+                {downloadingFormat === 'CSV' ? 'Exporting Dataset...' : 'Download Structured CV (.csv)'}
               </span>
             </button>
           </div>
         </div>
 
         {/* Dynamic Highlight banner - Hidden in Print */}
-        <div className="mt-8 rounded-none bg-indigo-50 border border-indigo-250 p-4 print:hidden flex items-start gap-3">
-          <Sparkles className="h-5 w-5 text-indigo-600 flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-indigo-950 leading-relaxed font-sans">
-            <strong className="font-bold">Analyst Advantage:</strong> The <span className="font-mono text-indigo-900 font-bold bg-white px-1.5 py-0.5 rounded-none border border-indigo-200">.csv download</span> outputs a completely normalized database relation representing this resume. Download it to test your own pivot tables and SQL scripts directly on my credentials!
+        <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-5 print:hidden flex items-start gap-3.5 mb-10">
+          <Sparkles className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
+          <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+            <strong className="font-semibold text-slate-900">Analyst Advantage:</strong> The <span className="font-mono text-xs font-semibold bg-white px-2 py-0.5 rounded-md border border-slate-200 text-black">.csv export</span> contains a normalized dataset representing this resume. Download it to test your own pivot tables and SQL scripts directly on my credentials!
           </div>
         </div>
 
         {/* Resume Sheet Container */}
-        <div id="resume-sheet" className="mt-12 bg-white border border-slate-200 print:border-none shadow-none print:shadow-none rounded-none p-6 sm:p-12 print:p-0 space-y-8 print:space-y-6 text-slate-800">
+        <div id="resume-sheet" className="bg-white border border-slate-200/80 print:border-none shadow-sm print:shadow-none rounded-3xl p-6 sm:p-12 print:p-0 space-y-8 print:space-y-6 text-slate-800">
           
           {/* Resume Header */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 border-b border-slate-300 pb-6">
