@@ -3,12 +3,24 @@ import { portfolioProjects } from '../data/projects';
 import { PortfolioProject } from '../types';
 import { ArrowUpRight, Github, Sparkles } from 'lucide-react';
 
+function cutShort(text: string, maxLen = 110): string {
+  if (!text) return '';
+  const firstSentenceMatch = text.match(/^([^.?!]+[.?!])/);
+  if (firstSentenceMatch && firstSentenceMatch[1].length <= maxLen) {
+    return firstSentenceMatch[1].trim();
+  }
+  if (text.length <= maxLen) return text;
+  const sliced = text.slice(0, maxLen);
+  const lastSpace = sliced.lastIndexOf(' ');
+  const clean = lastSpace > 25 ? sliced.slice(0, lastSpace) : sliced;
+  return clean.replace(/[,;:.!?]+$/, '') + '…';
+}
+
 export default function ProjectsSection() {
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'eda' | 'sql' | 'excel' | 'regex'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'eda' | 'sql' | 'excel' | 'regex'>('eda');
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
   const filterMap = {
-    all: () => true,
     eda: (p: PortfolioProject) => p.category.toLowerCase().includes('eda') || p.category.toLowerCase().includes('risk') || p.category.toLowerCase().includes('analytics') || p.category.toLowerCase().includes('spatial'),
     sql: (p: PortfolioProject) => p.category.toLowerCase().includes('sql') || p.category.toLowerCase().includes('query') || p.category.toLowerCase().includes('database'),
     excel: (p: PortfolioProject) => p.category.toLowerCase().includes('excel') || p.category.toLowerCase().includes('kpi') || p.category.toLowerCase().includes('modeling'),
@@ -51,16 +63,6 @@ export default function ProjectsSection() {
 
           {/* Interactive filter tabs */}
           <div className="flex flex-wrap items-center gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200/60 self-start md:self-auto">
-            <button
-              onClick={() => { setSelectedFilter('all'); setVisibleCount(8); }}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                selectedFilter === 'all'
-                  ? 'bg-white text-black shadow-xs'
-                  : 'text-slate-650 hover:text-black'
-              }`}
-            >
-              All ({portfolioProjects.length})
-            </button>
             <button
               onClick={() => { setSelectedFilter('eda'); setVisibleCount(8); }}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
@@ -167,18 +169,18 @@ export default function ProjectsSection() {
                     {proj.title}
                   </h3>
 
-                  <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
-                    <p>
+                  <div className="space-y-2 text-xs sm:text-sm text-slate-600 leading-snug">
+                    <p className="line-clamp-2">
                       <strong className="text-slate-900 font-semibold">Problem: </strong>
-                      {proj.problem}
+                      {cutShort(proj.problem, 110)}
                     </p>
-                    <p>
+                    <p className="line-clamp-2">
                       <strong className="text-slate-900 font-semibold">Solution: </strong>
-                      {proj.approach}
+                      {cutShort(proj.approach, 110)}
                     </p>
-                    <p>
-                      <strong className="text-emerald-700 font-semibold">Executive Impact: </strong>
-                      {proj.impact}
+                    <p className="line-clamp-2">
+                      <strong className="text-emerald-700 font-semibold">Executive: </strong>
+                      {cutShort(proj.impact, 110)}
                     </p>
                   </div>
 
