@@ -11,7 +11,6 @@ import DashboardPlayground from './components/DashboardPlayground';
 import SkillsSection from './components/SkillsSection';
 import ProcessSection from './components/ProcessSection';
 import ServicesSection from './components/ServicesSection';
-import ResumeSection from './components/ResumeSection';
 import ContactSection from './components/ContactSection';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
@@ -95,9 +94,6 @@ export default function App() {
         {/* Services Section */}
         <ServicesSection />
 
-        {/* Resume Sheet Section */}
-        <ResumeSection />
-
         {/* Contact Section */}
         <ContactSection />
       </main>
@@ -116,19 +112,25 @@ export default function App() {
 
         {/* Footer Details Rows */}
         <div className="space-y-6 mb-16 max-w-3xl mx-auto">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <a
               href="mailto:vvachhani28@gmail.com"
               className="text-base font-semibold text-slate-900 hover:text-black shrink-0"
             >
               vvachhani28@gmail.com
             </a>
-            <div className="flex-1 h-px bg-slate-200/80" />
+            <div className="hidden sm:block flex-1 h-px bg-slate-200/80 mx-4" />
+            <a
+              href="tel:+917016555495"
+              className="text-base font-semibold text-slate-900 hover:text-black shrink-0 font-mono"
+            >
+              +91 7016555495
+            </a>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-6">
             <span className="text-base font-medium text-slate-600 shrink-0">
-              Gujarat, India (Available Worldwide)
+              Surat, Gujarat, India (Open to Remote / Relocation)
             </span>
             <div className="hidden sm:block flex-1 h-px bg-slate-200/80" />
             <div className="flex items-center justify-center gap-5 shrink-0">
@@ -181,10 +183,6 @@ export default function App() {
           <span className="text-slate-300">•</span>
           <a href="#sandbox" onClick={(e) => handleScroll(e, '#sandbox')} className="hover:text-black transition-colors">
             Console
-          </a>
-          <span className="text-slate-300">•</span>
-          <a href="#resume" onClick={(e) => handleScroll(e, '#resume')} className="hover:text-black transition-colors">
-            Resume
           </a>
           <span className="text-slate-300">•</span>
           <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="hover:text-black transition-colors">

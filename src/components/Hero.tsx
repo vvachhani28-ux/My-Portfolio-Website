@@ -38,12 +38,12 @@ export default function Hero() {
               <span>View Projects</span>
             </a>
             <a
-              id="hero-download-resume-btn"
-              href="#resume"
-              onClick={(e) => handleScroll(e, '#resume')}
+              id="hero-contact-btn"
+              href="#contact"
+              onClick={(e) => handleScroll(e, '#contact')}
               className="btn-pill btn-pill-secondary flex items-center gap-1.5"
             >
-              <span>View &amp; Download Resume</span>
+              <span>Get in Touch</span>
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
@@ -93,7 +93,7 @@ export default function Hero() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-slate-900 leading-tight">Vasu Vachhani</h4>
-                  <span className="text-[11px] text-slate-500">Applied Statistics Honors</span>
+                  <span className="text-[11px] text-slate-500">Surat, Gujarat • Data Analyst</span>
                 </div>
               </div>
               <div className="status-pill text-[10px] py-1 px-3">
@@ -150,7 +150,7 @@ export default function Hero() {
                 <Sparkles className="h-3.5 w-3.5 text-amber-500" />
                 Data Modeling &amp; BI
               </span>
-              <span className="font-mono text-[11px]">Fall 2026 Ready</span>
+              <span className="font-mono text-[11px] text-emerald-600 font-semibold">Available Worldwide</span>
             </div>
 
           </div>

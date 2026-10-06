@@ -366,32 +366,10 @@ body {
   }
 }
 
-/* Print Overrides to cleanly isolate the Resume Sheet on A4/Letter paper */
+/* Print Overrides */
 @media print {
   body {
     background: white !important;
     color: black !important;
-  }
-  body > :not(#root) {
-    display: none !important;
-  }
-  #root > div > :not(main) {
-    display: none !important;
-  }
-  main > :not(#resume) {
-    display: none !important;
-  }
-  #resume > :not(#resume-sheet) {
-    display: none !important;
-  }
-  #resume-sheet {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
   }
 }

@@ -72,7 +72,7 @@ export default function SkillsSection() {
         {/* Timeline on left (col-span-8) */}
         <div className="lg:col-span-8">
           <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8 font-mono">
-            Education &amp; Experience
+            Practical Experience &amp; Analytics Focus
           </h3>
 
           <div className="space-y-0 relative">
@@ -83,12 +83,12 @@ export default function SkillsSection() {
                 <div className="w-0.5 h-14 bg-dashed border-l-2 border-dashed border-slate-300 my-1" />
               </div>
               <div className="pb-4">
-                <span className="exp-badge" style={{ backgroundColor: '#10B981' }}>Education</span>
+                <span className="exp-badge" style={{ backgroundColor: '#000000' }}>Industry Internship</span>
                 <h4 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                  B.S. in Applied Statistics &amp; Computer Science (Honors)
+                  Quantitative Data Analyst Intern
                 </h4>
                 <p className="text-sm text-slate-500">
-                  CHARUSAT / University Honors Program · GPA: 3.82 / 4.0
+                  Prodigy &amp; Sysslan Analytics Solutions · Automated ETL, Exploratory Data Analysis &amp; Statistical Modeling
                 </p>
               </div>
             </div>
@@ -97,48 +97,31 @@ export default function SkillsSection() {
             <div className="flex items-start gap-5">
               <div className="flex flex-col items-center">
                 <div className="w-3.5 h-3.5 rounded-full bg-black ring-4 ring-white shadow-xs mt-1" />
-                <div className="w-0.5 h-14 bg-dashed border-l-2 border-dashed border-slate-300 my-1" />
-              </div>
-              <div className="pb-4">
-                <span className="exp-badge" style={{ backgroundColor: '#3B82F6' }}>Academic Fellowship</span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                  Lead Undergraduate Teaching Assistant — Business Analytics
-                </h4>
-                <p className="text-sm text-slate-500">
-                  Department of Statistics &amp; Computer Information Systems
-                </p>
-              </div>
-            </div>
-
-            {/* Timeline item 3 */}
-            <div className="flex items-start gap-5">
-              <div className="flex flex-col items-center">
-                <div className="w-3.5 h-3.5 rounded-full bg-black ring-4 ring-white shadow-xs mt-1" />
               </div>
               <div>
-                <span className="exp-badge" style={{ backgroundColor: '#000000' }}>Internship</span>
+                <span className="exp-badge" style={{ backgroundColor: '#3B82F6' }}>Analytics Research</span>
                 <h4 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                  Quantitative Data Analyst Intern
+                  Independent Analytics &amp; Relational Engineering
                 </h4>
                 <p className="text-sm text-slate-500">
-                  Prodigy &amp; Sysslan Analytics Solutions · Data Engineering &amp; EDA
+                  Author of 25 production-grade case studies across Python EDA, PostgreSQL schemas, and executive Excel dashboards
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Resume CTA on right (col-span-4) */}
+        {/* Contact CTA on right (col-span-4) */}
         <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right gap-4 pt-6 lg:pt-0 lg:border-l lg:border-slate-100 lg:pl-10">
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Full breakdown of my statistical methodologies, certifications &amp; full 25 project repositories.
+            Have an analytics requirement or full-time position? Let's connect and discuss your goals.
           </p>
           <a
-            href="#resume"
-            onClick={(e) => handleScroll(e, '#resume')}
+            href="#contact"
+            onClick={(e) => handleScroll(e, '#contact')}
             className="btn-pill btn-pill-primary flex items-center gap-2 text-sm"
           >
-            <span>View &amp; Download Resume</span>
+            <span>Let's Connect</span>
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>

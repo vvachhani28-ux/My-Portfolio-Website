@@ -10,7 +10,6 @@ export default function Navbar() {
     { label: 'Process', href: '#process' },
     { label: 'Services', href: '#services' },
     { label: 'Console', href: '#sandbox' },
-    { label: 'Resume', href: '#resume' },
     { label: 'Contact', href: '#contact' },
   ];
 

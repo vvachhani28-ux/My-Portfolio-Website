@@ -93,11 +93,14 @@ export default function ContactSection() {
                 Direct Inquiries
               </span>
               <a
-                href="tel:9979577104"
+                href="tel:+917016555495"
                 className="text-sm sm:text-base font-bold text-slate-900 hover:text-indigo-650 transition-colors"
               >
-                +91 99795 77104
+                +91 7016555495
               </a>
+              <span className="block text-[11px] text-slate-500 mt-0.5">
+                Call &amp; WhatsApp
+              </span>
             </div>
           </div>
 
@@ -111,7 +114,10 @@ export default function ContactSection() {
                 Location
               </span>
               <span className="text-sm sm:text-base font-bold text-slate-900 block">
-                Gujarat, India (Open to Remote / Relocation)
+                Surat, Gujarat, India
+              </span>
+              <span className="block text-[11px] text-emerald-600 mt-0.5 font-medium">
+                Open to Remote &amp; Relocation
               </span>
             </div>
           </div>
